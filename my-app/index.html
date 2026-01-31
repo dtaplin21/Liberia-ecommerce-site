@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>The Unnamed Farm | From Raw Cocoa to Real Opportunity</title>
+
+  <style>
+
+    :root {
+
+      --primary: #8B4513;      /* Earth brown */
+
+      --accent: #F4A460;       /* Sun/tractor orange */
+
+      --secondary: #556B2F;    /* Green foliage */
+
+      --light: #FFFACD;        /* Light highlight */
+
+      --dark: #3C2F2F;
+
+      --gray: #5C4033;
+
+    }
+
+    body {
+
+      margin: 0;
+
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      color: var(--dark);
+
+      background: #fdfaf5;
+
+      line-height: 1.6;
+
+    }
+
+    header {
+
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+
+      color: white;
+
+      padding: 1rem 2rem;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
+    }
+
+    .logo {
+
+      height: 60px;
+
+      width: auto;
+
+    }
+
+    nav a {
+
+      color: white;
+
+      margin-left: 1.5rem;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .hero {
+
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://via.placeholder.com/1600x800?text=Hero+Farmers+with+Cocoa') center/cover no-repeat; /* Replace with main group photo URL */
+
+      color: white;
+
+      text-align: center;
+
+      padding: 150px 20px 100px;
+
+    }
+
+    .hero h1 {
+
+      font-size: 3.5rem;
+
+      margin: 0 0 1rem;
+
+    }
+
+    .hero p {
+
+      font-size: 1.5rem;
+
+      max-width: 800px;
+
+      margin: 0 auto 2rem;
+
+    }
+
+    .btn {
+
+      display: inline-block;
+
+      background: var(--accent);
+
+      color: white;
+
+      padding: 1rem 2rem;
+
+      border-radius: 50px;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      margin: 0.5rem;
+
+      transition: all 0.3s;
+
+    }
+
+    .btn:hover { background: #e08c3e; transform: scale(1.05); }
+
+    .btn-secondary { background: var(--secondary); }
+
+    section {
+
+      padding: 80px 20px;
+
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+    }
+
+    h2 {
+
+      color: var(--primary);
+
+      text-align: center;
+
+      font-size: 2.8rem;
+
+      margin-bottom: 2rem;
+
+    }
+
+    .grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+      gap: 2rem;
+
+    }
+
+    .card {
+
+      background: white;
+
+      border-radius: 12px;
+
+      overflow: hidden;
+
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+      text-align: center;
+
+    }
+
+    .card img {
+
+      width: 100%;
+
+      height: 250px;
+
+      object-fit: cover;
+
+    }
+
+    .product-hero {
+
+      background: var(--light);
+
+      text-align: center;
+
+      padding: 100px 20px;
+
+    }
+
+    .product-img {
+
+      max-width: 400px;
+
+      border-radius: 12px;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+    }
+
+    footer {
+
+      background: var(--primary);
+
+      color: white;
+
+      text-align: center;
+
+      padding: 3rem 1rem;
+
+    }
+
+    @media (max-width: 768px) {
+
+      .hero { padding: 100px 15px 60px; }
+
+      .hero h1 { font-size: 2.5rem; }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+
+  <header>
+
+    <img src="./images/The UNNAMED FARM.JPEG" alt="The Unnamed Farm Logo" class="logo"> <!-- Replace with actual logo file/path -->
+
+    <nav>
+
+      <a href="#home">Home</a>
+
+      <a href="#fund">Fund the Factory</a>
+
+      <a href="#product">Cocoa Butter</a>
+
+      <a href="#story">Our Story</a>
+
+      <a href="#impact">Impact</a>
+
+      <a href="#faq">FAQ</a>
+
+      <a href="#contact">Contact</a>
+
+    </nav>
+
+  </header>
+
+
+
+  <!-- 1. HOMEPAGE -->
+
+
+
+  <section id="home" class="hero">
+
+    <h1>From Raw to Real</h1>
+
+    <p>Every jar helps build Liberia’s first scalable cocoa processing facility.</p>
+
+    <a href="#fund" class="btn">Support the Processing Facility</a>
+
+    <a href="#product" class="btn btn-secondary">See the Cocoa Butter</a>
+
+  </section>
+
+
+
+  <section>
+
+    <h2>The Problem</h2>
+
+    <div class="grid">
+
+      <div>
+
+        <img src="./images/Liberia_cocoa_farmers_pods.JPEG" alt="Liberia cocoa farmers with pods"> <!-- Main group photo -->
+
+        <p>Liberia exports nearly all its cocoa raw.</p>
+
+      </div>
+
+      <div>
+
+        <img src="cocoa-pod-closeup.jpg" alt="Close-up of cocoa pod"> <!-- One of the pod images -->
+
+        <p>Most of the value is captured abroad.</p>
+
+      </div>
+
+      <div>
+
+        <img src="farmer-with-tree.jpg" alt="Farmer holding cocoa tree"> <!-- Farmer by tree photo -->
+
+        <p>This isn’t a farming problem—it’s a processing problem.</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section style="background:#f8f4ed;">
+
+    <h2>The Solution</h2>
+
+    <p style="text-align:center; max-width:900px; margin:0 auto 3rem; font-size:1.2rem;">
+
+      We are building local processing so value, jobs, and income stay in Liberia.
+
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+
+        <img src="cocoa-pods-on-tree.jpg" alt="Cocoa pods on tree">
+
+        <h3>Raw Cocoa Beans</h3>
+
+      </div>
+
+      <div class="card">
+
+        <img src="cocoa-butter-jar.jpg" alt="Divine Lumina Cocoa Butter Jar"> <!-- Product jar image -->
+
+        <h3>→ Cocoa Butter</h3>
+
+      </div>
+
+      <div class="card">
+
+        <img src="farmers-holding-pods.jpg" alt="Farmers holding cocoa pods"> <!-- Handing pod photo -->
+
+        <h3>Finished Product & Opportunity</h3>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section>
+
+    <h2>Proof of Concept: Cocoa Butter</h2>
+
+    <p style="text-align:center; font-size:1.3rem;">
+
+      This cocoa butter is handmade today. Tomorrow, it will be produced at scale in Liberia.
+
+    </p>
+
+    <div style="text-align:center; margin:3rem 0;">
+
+      <img src="cocoa-butter-jar.jpg" alt="Divine Lumina Raw & Unrefined Cocoa Butter" class="product-img">
+
+    </div>
+
+    <div style="text-align:center;">
+
+      <a href="#product" class="btn">Get a Jar & Support the Build</a>
+
+    </div>
+
+  </section>
+
+
+
+  <section style="background:var(--secondary); color:white;">
+
+    <h2>Impact Snapshot</h2>
+
+    <div class="grid">
+
+      <div style="text-align:center;">
+
+        <h3>Jobs Created</h3>
+
+        <p>Local employment in processing and farming</p>
+
+      </div>
+
+      <div style="text-align:center;">
+
+        <h3>Farmers Supported</h3>
+
+        <p>700-acre farm in Nimba County + community partners</p>
+
+      </div>
+
+      <div style="text-align:center;">
+
+        <h3>Value Retained Locally</h3>
+
+        <p>Keeping wealth in Liberia</p>
+
+      </div>
+
+      <div style="text-align:center;">
+
+        <h3>Community Ownership</h3>
+
+        <p>Shared prosperity model</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section>
+
+    <h2>Trust & Legitimacy</h2>
+
+    <p style="text-align:center; font-size:1.2rem;">
+
+      700-acre farm in Nimba County • Community partnership • Traceable & ethical sourcing
+
+    </p>
+
+    <!-- Add placeholder logos/certifications here later -->
+
+  </section>
+
+
+
+  <!-- 2. FUND THE FACTORY -->
+
+
+
+  <section id="fund" style="background:#f0e8df;">
+
+    <h2>Fund the Factory</h2>
+
+    <h3>What We’re Building</h3>
+
+    <p>A scalable cocoa processing facility producing:</p>
+
+    <ul style="max-width:800px; margin:1rem auto; font-size:1.2rem;">
+
+      <li>Cocoa butter</li>
+
+      <li>Cocoa powder</li>
+
+      <li>Cocoa liquor</li>
+
+      <li>Cocoa nibs</li>
+
+    </ul>
+
+    <p style="font-weight:bold; text-align:center;">Local jobs • Local ownership • Local value capture</p>
+
+
+
+    <h3>Why Processing Matters</h3>
+
+    <p>Raw exports = low income. Processing = higher wages, skills, and stability. Processing is where wealth is created.</p>
+
+
+
+    <h3>How Your Support Is Used</h3>
+
+    <div class="grid">
+
+      <div class="card"><h3>Equipment Procurement</h3></div>
+
+      <div class="card"><h3>Facility Construction</h3></div>
+
+      <div class="card"><h3>Power & Energy Systems</h3></div>
+
+      <div class="card"><h3>Workforce Training</h3></div>
+
+    </div>
+
+
+
+    <h3>Why Cocoa Butter?</h3>
+
+    <p>High-value, globally demanded, core output of processing. Buyers are already asking for it.</p>
+
+
+
+    <div style="text-align:center; margin:4rem 0;">
+
+      <img src="cocoa-butter-jar.jpg" alt="Divine Lumina Cocoa Butter" class="product-img">
+
+      <br><br>
+
+      <a href="#product" class="btn">Support the Factory by Purchasing Cocoa Butter</a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- 3. COCOA BUTTER PRODUCT PAGE -->
+
+
+
+  <section id="product" class="product-hero">
+
+    <h2>Divine Lumina – Raw & Unrefined Cocoa Butter</h2>
+
+    <img src="cocoa-butter-jar.jpg" alt="8 oz jar of Divine Lumina Cocoa Butter" class="product-img">
+
+    <p style="font-size:1.4rem; margin:2rem 0;">8 oz • Every jar directly supports processing infrastructure in Liberia.</p>
+
+    <a href="#" class="btn" style="font-size:1.5rem; padding:1.2rem 3rem;">Purchase & Support the Build</a>
+
+  </section>
+
+
+
+  <section>
+
+    <h2>What Makes This Different</h2>
+
+    <ul style="max-width:800px; margin:0 auto; font-size:1.2rem;">
+
+      <li>Handmade</li>
+
+      <li>Raw & unrefined</li>
+
+      <li>Liberian-sourced</li>
+
+      <li>No fillers</li>
+
+      <li>Small-batch</li>
+
+    </ul>
+
+  </section>
+
+
+
+  <section style="background:var(--light);">
+
+    <h2>The Deeper Meaning</h2>
+
+    <p style="text-align:center; font-size:1.3rem; max-width:900px; margin:auto;">
+
+      This jar represents what Liberia can produce when processing happens locally.<br>
+
+      You are buying participation in real change—not just lotion.
+
+    </p>
+
+  </section>
+
+
+
+  <section>
+
+    <h2>How Funds Are Used</h2>
+
+    <p style="text-align:center; font-size:1.3rem;">
+
+      Proceeds go toward building cocoa processing capacity in Liberia.
+
+    </p>
+
+  </section>
+
+
