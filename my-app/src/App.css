@@ -27,6 +27,12 @@ nav a:hover {
   color: var(--accent); 
 }
 
+/* Active link styling for React Router */
+nav a.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
 .hero {
   background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://via.placeholder.com/1600x800?text=Hero+Farmers+with+Cocoa') center/cover no-repeat;
   color: white;
