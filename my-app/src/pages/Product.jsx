@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function Product() {
   return (
     <>
@@ -5,7 +7,7 @@ function Product() {
         <h2>Divine Lumina – Raw & Unrefined Cocoa Butter</h2>
         <img src="/images/cocoa_jar.JPEG" alt="8 oz jar of Divine Lumina Cocoa Butter" className="product-img" />
         <p style={{fontSize: '1.4rem', margin: '2rem 0'}}>8 oz • Every jar directly supports processing infrastructure in Liberia.</p>
-        <a href="#" className="btn" style={{fontSize: '1.5rem', padding: '1.2rem 3rem'}}>Purchase & Support the Build</a>
+        <Link to="/checkout" className="btn" style={{fontSize: '1.5rem', padding: '1.2rem 3rem'}}>Purchase & Support the Build</Link>
       </section>
 
       <section>
