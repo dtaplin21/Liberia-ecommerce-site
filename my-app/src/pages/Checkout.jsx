@@ -4,8 +4,11 @@ function Checkout() {
   const [quantity, setQuantity] = useState(1)
   const productPrice = 30
   const shippingCost = 5
+  const taxRate = 0.0725  // 7.25% California sales tax
+  
   const subtotal = productPrice * quantity
-  const total = subtotal + shippingCost
+  const tax = subtotal * taxRate
+  const total = subtotal + shippingCost + tax
   
   const [formData, setFormData] = useState({
     name: '',
@@ -86,19 +89,25 @@ function Checkout() {
             {/* Subtotal */}
             <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #eee'}}>
               <p style={{margin: 0, color: '#666'}}>Subtotal</p>
-              <p style={{margin: 0, fontWeight: 'bold'}}>${subtotal}</p>
+              <p style={{margin: 0, fontWeight: 'bold'}}>${subtotal.toFixed(2)}</p>
             </div>
             
             {/* Shipping */}
             <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem'}}>
               <p style={{margin: 0, color: '#666'}}>Shipping</p>
-              <p style={{margin: 0, fontWeight: 'bold'}}>${shippingCost}</p>
+              <p style={{margin: 0, fontWeight: 'bold'}}>${shippingCost.toFixed(2)}</p>
+            </div>
+            
+            {/* Tax */}
+            <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem'}}>
+              <p style={{margin: 0, color: '#666'}}>Tax</p>
+              <p style={{margin: 0, fontWeight: 'bold'}}>${tax.toFixed(2)}</p>
             </div>
             
             {/* Total */}
             <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '1rem', borderTop: '2px solid var(--primary)'}}>
               <p style={{fontSize: '1.2rem', fontWeight: 'bold', margin: 0}}>Total</p>
-              <p style={{fontSize: '1.2rem', fontWeight: 'bold', margin: 0}}>${total}</p>
+              <p style={{fontSize: '1.2rem', fontWeight: 'bold', margin: 0}}>${total.toFixed(2)}</p>
             </div>
           </div>
         </div>
