@@ -1,6 +1,12 @@
 import { useState } from 'react'
 
 function Checkout() {
+  const [quantity, setQuantity] = useState(1)
+  const productPrice = 30
+  const shippingCost = 5
+  const subtotal = productPrice * quantity
+  const total = subtotal + shippingCost
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,29 +36,77 @@ function Checkout() {
     <section style={{padding: '60px 20px'}}>
       <h2>Checkout</h2>
       
-      <div style={{maxWidth: '800px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem'}}>
+      <div style={{maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem'}}>
         {/* Order Summary */}
         <div>
           <h3 style={{color: 'var(--primary)', marginBottom: '1.5rem'}}>Order Summary</h3>
-          <div style={{background: 'white', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)'}}>
+          <div style={{background: 'white', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)', border: '1px solid #ddd'}}>
+            {/* Product Image */}
+            <div style={{marginBottom: '1.5rem', textAlign: 'center'}}>
+              <img 
+                src="/images/cocoa_jar.JPEG" 
+                alt="Divine Lumina Cocoa Butter" 
+                style={{
+                  width: '100%',
+                  maxWidth: '200px',
+                  height: 'auto',
+                  borderRadius: '8px',
+                  objectFit: 'cover'
+                }}
+              />
+            </div>
+            
             <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #eee'}}>
               <div>
                 <p style={{fontWeight: 'bold', margin: 0}}>Divine Lumina Cocoa Butter</p>
                 <p style={{margin: 0, color: '#666'}}>8 oz</p>
               </div>
-              <p style={{fontWeight: 'bold', margin: 0}}>$30</p>
+              <p style={{fontWeight: 'bold', margin: 0}}>${productPrice}</p>
             </div>
+            <div style={{marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #eee'}}>
+              <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '0.9rem'}}>Quantity</label>
+              <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                <button
+                  type="button"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  style={{padding: '0.5rem 1rem', border: '1px solid #ddd', borderRadius: '4px', background: 'white', cursor: 'pointer', fontSize: '1.2rem'}}
+                >
+                  -
+                </button>
+                <span style={{fontWeight: 'bold', minWidth: '2rem', textAlign: 'center'}}>{quantity}</span>
+                <button
+                  type="button"
+                  onClick={() => setQuantity(quantity + 1)}
+                  style={{padding: '0.5rem 1rem', border: '1px solid #ddd', borderRadius: '4px', background: 'white', cursor: 'pointer', fontSize: '1.2rem'}}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            {/* Subtotal */}
+            <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #eee'}}>
+              <p style={{margin: 0, color: '#666'}}>Subtotal</p>
+              <p style={{margin: 0, fontWeight: 'bold'}}>${subtotal}</p>
+            </div>
+            
+            {/* Shipping */}
+            <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem'}}>
+              <p style={{margin: 0, color: '#666'}}>Shipping</p>
+              <p style={{margin: 0, fontWeight: 'bold'}}>${shippingCost}</p>
+            </div>
+            
+            {/* Total */}
             <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '1rem', borderTop: '2px solid var(--primary)'}}>
               <p style={{fontSize: '1.2rem', fontWeight: 'bold', margin: 0}}>Total</p>
-              <p style={{fontSize: '1.2rem', fontWeight: 'bold', margin: 0}}>$30</p>
+              <p style={{fontSize: '1.2rem', fontWeight: 'bold', margin: 0}}>${total}</p>
             </div>
           </div>
         </div>
 
         {/* Checkout Form */}
-        <div>
+        <div style={{padding: '2rem'}}>
           <h3 style={{color: 'var(--primary)', marginBottom: '1.5rem'}}>Shipping Information</h3>
-          <form onSubmit={handleSubmit} style={{background: 'white', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)'}}>
+          <form onSubmit={handleSubmit} style={{background: 'white', padding: '4rem', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)', border: '1px solid #ddd'}}>
             <div style={{marginBottom: '1rem'}}>
               <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold'}}>Full Name</label>
               <input
