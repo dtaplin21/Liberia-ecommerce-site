@@ -1,7 +1,14 @@
 import { useState } from 'react'
+import { loadStripe } from '@stripe/stripe-js'
+
+// Initialize Stripe with your publishable key
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_...')
 
 function Checkout() {
   const [quantity, setQuantity] = useState(1)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  
   const productPrice = 30
   const shippingCost = 5
   const taxRate = 0.0725  // 7.25% California sales tax
@@ -16,10 +23,7 @@ function Checkout() {
     address: '',
     city: '',
     state: '',
-    zip: '',
-    cardNumber: '',
-    expiryDate: '',
-    cvv: ''
+    zip: ''
   })
 
   const handleChange = (e) => {
@@ -29,15 +33,82 @@ function Checkout() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // TODO: Implement payment processing
-    alert('Order submitted! (Payment processing to be implemented)')
+    setLoading(true)
+    setError(null)
+
+    try {
+      // Calculate total in cents (Stripe requires cents)
+      const amountInCents = Math.round(total * 100)
+
+      // Call backend to create payment intent
+      const response = await fetch('http://localhost:8000/create-payment-intent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: amountInCents,
+          currency: 'usd',
+          metadata: {
+            customer_name: formData.name,
+            customer_email: formData.email,
+            customer_address: formData.address,
+            customer_city: formData.city,
+            customer_state: formData.state,
+            customer_zip: formData.zip,
+            quantity: quantity.toString(),
+            product: 'Divine Lumina Cocoa Butter'
+          }
+        })
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.detail || 'Failed to create payment intent')
+      }
+
+      const { clientSecret } = await response.json()
+
+      // Initialize Stripe
+      const stripe = await stripePromise
+      if (!stripe) {
+        throw new Error('Stripe failed to initialize')
+      }
+
+      // Redirect to Stripe Checkout
+      const { error: stripeError } = await stripe.redirectToCheckout({
+        clientSecret: clientSecret,
+      })
+
+      if (stripeError) {
+        throw new Error(stripeError.message)
+      }
+
+    } catch (err) {
+      setError(err.message)
+      setLoading(false)
+    }
   }
 
   return (
     <section style={{padding: '60px 20px'}}>
       <h2>Checkout</h2>
+      
+      {error && (
+        <div style={{
+          background: '#fee',
+          color: '#c33',
+          padding: '1rem',
+          borderRadius: '4px',
+          marginBottom: '1rem',
+          maxWidth: '1200px',
+          margin: '0 auto 1rem'
+        }}>
+          Error: {error}
+        </div>
+      )}
       
       <div style={{maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem'}}>
         {/* Order Summary */}
@@ -188,54 +259,19 @@ function Checkout() {
               </div>
             </div>
 
-            <h3 style={{color: 'var(--primary)', marginTop: '2rem', marginBottom: '1.5rem'}}>Payment Information</h3>
-
-            <div style={{marginBottom: '1rem'}}>
-              <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold'}}>Card Number</label>
-              <input
-                type="text"
-                name="cardNumber"
-                value={formData.cardNumber}
-                onChange={handleChange}
-                placeholder="1234 5678 9012 3456"
-                required
-                style={{width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem'}}
-              />
-            </div>
-
-            <div style={{display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1rem', marginBottom: '1.5rem'}}>
-              <div>
-                <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold'}}>Expiry Date</label>
-                <input
-                  type="text"
-                  name="expiryDate"
-                  value={formData.expiryDate}
-                  onChange={handleChange}
-                  placeholder="MM/YY"
-                  required
-                  style={{width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem'}}
-                />
-              </div>
-              <div>
-                <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold'}}>CVV</label>
-                <input
-                  type="text"
-                  name="cvv"
-                  value={formData.cvv}
-                  onChange={handleChange}
-                  placeholder="123"
-                  required
-                  style={{width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem'}}
-                />
-              </div>
+            <div style={{marginTop: '2rem', padding: '1rem', background: '#f9f9f9', borderRadius: '4px', marginBottom: '1rem'}}>
+              <p style={{margin: 0, fontSize: '0.9rem', color: '#666'}}>
+                You will be redirected to Stripe's secure checkout page to complete your payment.
+              </p>
             </div>
 
             <button
               type="submit"
               className="btn"
               style={{width: '100%', fontSize: '1.2rem', padding: '1rem', marginTop: '1rem'}}
+              disabled={loading}
             >
-              Complete Purchase
+              {loading ? 'Processing...' : 'Complete Purchase'}
             </button>
           </form>
         </div>
