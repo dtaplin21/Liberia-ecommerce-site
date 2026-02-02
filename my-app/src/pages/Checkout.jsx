@@ -92,7 +92,7 @@ function Checkout() {
         </div>
       )}
       
-      <div style={{maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem'}}>
+      <div className="checkout-container">
         {/* Order Summary */}
         <div>
           <h3 style={{color: 'var(--primary)', marginBottom: '1.5rem'}}>Order Summary</h3>
@@ -120,7 +120,7 @@ function Checkout() {
               <p style={{fontWeight: 'bold', margin: 0}}>${productPrice}</p>
             </div>
             <div style={{marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #eee'}}>
-              <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
+              <div className="quantity-donation-grid">
                 {/* Quantity */}
                 <div>
                   <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '0.9rem'}}>Quantity</label>
@@ -128,7 +128,16 @@ function Checkout() {
                     <button
                       type="button"
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      style={{padding: '0.5rem 1rem', border: '1px solid #ddd', borderRadius: '4px', background: 'white', cursor: 'pointer', fontSize: '1.2rem'}}
+                      style={{
+                        padding: '0.5rem 1rem', 
+                        border: '1px solid #ddd', 
+                        borderRadius: '4px', 
+                        background: 'white', 
+                        cursor: 'pointer', 
+                        fontSize: '1.2rem',
+                        minWidth: '44px',
+                        minHeight: '44px'
+                      }}
                     >
                       -
                     </button>
@@ -136,7 +145,16 @@ function Checkout() {
                     <button
                       type="button"
                       onClick={() => setQuantity(quantity + 1)}
-                      style={{padding: '0.5rem 1rem', border: '1px solid #ddd', borderRadius: '4px', background: 'white', cursor: 'pointer', fontSize: '1.2rem'}}
+                      style={{
+                        padding: '0.5rem 1rem', 
+                        border: '1px solid #ddd', 
+                        borderRadius: '4px', 
+                        background: 'white', 
+                        cursor: 'pointer', 
+                        fontSize: '1.2rem',
+                        minWidth: '44px',
+                        minHeight: '44px'
+                      }}
                     >
                       +
                     </button>
@@ -160,11 +178,13 @@ function Checkout() {
                       placeholder="0.00"
                       style={{
                         width: '100%',
-                        padding: '0.5rem',
+                        padding: '0.75rem',
                         border: '1px solid #ddd',
                         borderRadius: '4px',
                         fontSize: '1rem',
-                        textAlign: 'right'
+                        textAlign: 'right',
+                        minHeight: '44px',
+                        boxSizing: 'border-box'
                       }}
                     />
                   </div>
@@ -206,9 +226,9 @@ function Checkout() {
         </div>
 
         {/* Checkout Form */}
-        <div style={{padding: '2rem'}}>
+        <div className="checkout-form-container">
           <h3 style={{color: 'var(--primary)', marginBottom: '1.5rem'}}>Shipping Information</h3>
-          <form onSubmit={handleSubmit} style={{background: 'white', padding: '4rem', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)', border: '1px solid #ddd'}}>
+          <form onSubmit={handleSubmit} className="checkout-form">
             <div style={{marginBottom: '1rem'}}>
               <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold'}}>Full Name</label>
               <input
@@ -217,7 +237,15 @@ function Checkout() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                style={{width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem'}}
+                style={{
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '4px', 
+                  fontSize: '16px',
+                  minHeight: '44px',
+                  boxSizing: 'border-box'
+                }}
               />
             </div>
 
@@ -229,7 +257,15 @@ function Checkout() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                style={{width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem'}}
+                style={{
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '4px', 
+                  fontSize: '16px',
+                  minHeight: '44px',
+                  boxSizing: 'border-box'
+                }}
               />
             </div>
 
@@ -241,11 +277,19 @@ function Checkout() {
                 value={formData.address}
                 onChange={handleChange}
                 required
-                style={{width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem'}}
+                style={{
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '4px', 
+                  fontSize: '16px',
+                  minHeight: '44px',
+                  boxSizing: 'border-box'
+                }}
               />
             </div>
 
-            <div style={{display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '1rem', marginBottom: '1rem'}}>
+            <div className="address-grid" style={{marginBottom: '1rem'}}>
               <div>
                 <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold'}}>City</label>
                 <input
@@ -254,7 +298,15 @@ function Checkout() {
                   value={formData.city}
                   onChange={handleChange}
                   required
-                  style={{width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem'}}
+                  style={{
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '4px', 
+                  fontSize: '16px',
+                  minHeight: '44px',
+                  boxSizing: 'border-box'
+                }}
                 />
               </div>
               <div>
@@ -265,7 +317,15 @@ function Checkout() {
                   value={formData.state}
                   onChange={handleChange}
                   required
-                  style={{width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem'}}
+                  style={{
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '4px', 
+                  fontSize: '16px',
+                  minHeight: '44px',
+                  boxSizing: 'border-box'
+                }}
                 />
               </div>
               <div>
@@ -276,7 +336,15 @@ function Checkout() {
                   value={formData.zip}
                   onChange={handleChange}
                   required
-                  style={{width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '4px', fontSize: '1rem'}}
+                  style={{
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '4px', 
+                  fontSize: '16px',
+                  minHeight: '44px',
+                  boxSizing: 'border-box'
+                }}
                 />
               </div>
             </div>
