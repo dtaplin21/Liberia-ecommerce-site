@@ -25,6 +25,7 @@ function App() {
         <Route path="/impact" element={<Impact />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<div style={{padding: '60px 20px', textAlign: 'center'}}><h2>404 - Page Not Found</h2><p>The page you're looking for doesn't exist.</p></div>} />
       </Routes>
     </Router>
   )
