@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 function Checkout() {
   const [quantity, setQuantity] = useState(1)
+  const [donation, setDonation] = useState(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   
@@ -11,7 +12,9 @@ function Checkout() {
   
   const subtotal = productPrice * quantity
   const tax = subtotal * taxRate
-  const total = subtotal + shippingCost + tax
+  // Add donation to total if donation amount is greater than 0
+  const donationAmount = donation > 0 ? parseFloat(donation) : 0
+  const total = subtotal + shippingCost + tax + donationAmount
   
   const [formData, setFormData] = useState({
     name: '',
@@ -117,23 +120,55 @@ function Checkout() {
               <p style={{fontWeight: 'bold', margin: 0}}>${productPrice}</p>
             </div>
             <div style={{marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #eee'}}>
-              <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '0.9rem'}}>Quantity</label>
-              <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
-                <button
-                  type="button"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  style={{padding: '0.5rem 1rem', border: '1px solid #ddd', borderRadius: '4px', background: 'white', cursor: 'pointer', fontSize: '1.2rem'}}
-                >
-                  -
-                </button>
-                <span style={{fontWeight: 'bold', minWidth: '2rem', textAlign: 'center'}}>{quantity}</span>
-                <button
-                  type="button"
-                  onClick={() => setQuantity(quantity + 1)}
-                  style={{padding: '0.5rem 1rem', border: '1px solid #ddd', borderRadius: '4px', background: 'white', cursor: 'pointer', fontSize: '1.2rem'}}
-                >
-                  +
-                </button>
+              <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
+                {/* Quantity */}
+                <div>
+                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '0.9rem'}}>Quantity</label>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      style={{padding: '0.5rem 1rem', border: '1px solid #ddd', borderRadius: '4px', background: 'white', cursor: 'pointer', fontSize: '1.2rem'}}
+                    >
+                      -
+                    </button>
+                    <span style={{fontWeight: 'bold', minWidth: '2rem', textAlign: 'center'}}>{quantity}</span>
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(quantity + 1)}
+                      style={{padding: '0.5rem 1rem', border: '1px solid #ddd', borderRadius: '4px', background: 'white', cursor: 'pointer', fontSize: '1.2rem'}}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Donation */}
+                <div>
+                  <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', fontSize: '0.9rem'}}>Donation</label>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                    <span style={{fontSize: '1rem', color: '#666'}}>$</span>
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={donation || ''}
+                      onChange={(e) => {
+                        const value = e.target.value === '' ? 0 : parseFloat(e.target.value) || 0
+                        setDonation(value >= 0 ? value : 0)
+                      }}
+                      placeholder="0.00"
+                      style={{
+                        width: '100%',
+                        padding: '0.5rem',
+                        border: '1px solid #ddd',
+                        borderRadius: '4px',
+                        fontSize: '1rem',
+                        textAlign: 'right'
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
             {/* Subtotal */}
@@ -153,6 +188,14 @@ function Checkout() {
               <p style={{margin: 0, color: '#666'}}>Tax</p>
               <p style={{margin: 0, fontWeight: 'bold'}}>${tax.toFixed(2)}</p>
             </div>
+            
+            {/* Donation */}
+            {donationAmount > 0 && (
+              <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem'}}>
+                <p style={{margin: 0, color: '#666'}}>Donation</p>
+                <p style={{margin: 0, fontWeight: 'bold'}}>${donationAmount.toFixed(2)}</p>
+              </div>
+            )}
             
             {/* Total */}
             <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '1rem', borderTop: '2px solid var(--primary)'}}>

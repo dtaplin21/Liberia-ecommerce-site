@@ -31,7 +31,7 @@ function Fund() {
       <div style={{textAlign: 'center', margin: '4rem 0'}}>
         <img src="/images/cocoa_jar.JPEG" alt="Divine Lumina Cocoa Butter" className="product-img" />
         <br /><br />
-        <Link to="/product" className="btn">Support the Factory by Purchasing Cocoa Butter</Link>
+        <Link to="/checkout" className="btn">Support the Factory by Purchasing Cocoa Butter</Link>
       </div>
     </section>
   )
