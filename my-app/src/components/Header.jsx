@@ -1,20 +1,41 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../App.css'
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
+
   return (
     <header>
-      <Link to="/">
+      <Link to="/" onClick={closeMenu}>
         <img src="/images/The UNNAMED FARM.JPEG" alt="The Unnamed Farm Logo" className="logo" />
       </Link>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/fund">Fund the Factory</Link>
-        <Link to="/product">Cocoa Butter</Link>
-        <Link to="/story">Our Story</Link>
-        <Link to="/impact">Impact</Link>
-        <Link to="/faq">FAQ</Link>
-        <Link to="/contact">Contact</Link>
+      <button 
+        className="menu-toggle"
+        onClick={toggleMenu}
+        aria-label="Toggle menu"
+        aria-expanded={isMenuOpen}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav className={isMenuOpen ? 'nav-open' : ''}>
+        <Link to="/" onClick={closeMenu}>Home</Link>
+        <Link to="/fund" onClick={closeMenu}>Fund the Factory</Link>
+        <Link to="/product" onClick={closeMenu}>Cocoa Butter</Link>
+        <Link to="/story" onClick={closeMenu}>Our Story</Link>
+        <Link to="/impact" onClick={closeMenu}>Impact</Link>
+        <Link to="/faq" onClick={closeMenu}>FAQ</Link>
+        <Link to="/contact" onClick={closeMenu}>Contact</Link>
       </nav>
     </header>
   )
