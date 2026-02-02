@@ -1,8 +1,4 @@
 import { useState } from 'react'
-import { loadStripe } from '@stripe/stripe-js'
-
-// Initialize Stripe with your publishable key
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_...')
 
 function Checkout() {
   const [quantity, setQuantity] = useState(1)
@@ -42,8 +38,8 @@ function Checkout() {
       // Calculate total in cents (Stripe requires cents)
       const amountInCents = Math.round(total * 100)
 
-      // Call backend to create payment intent
-      const response = await fetch('http://localhost:8000/create-payment-intent', {
+      // Call backend to create checkout session
+      const response = await fetch('http://localhost:8000/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,40 +47,23 @@ function Checkout() {
         body: JSON.stringify({
           amount: amountInCents,
           currency: 'usd',
-          metadata: {
-            customer_name: formData.name,
-            customer_email: formData.email,
-            customer_address: formData.address,
-            customer_city: formData.city,
-            customer_state: formData.state,
-            customer_zip: formData.zip,
-            quantity: quantity.toString(),
-            product: 'Divine Lumina Cocoa Butter'
-          }
+          customer_email: formData.email,
+          customer_name: formData.name,
+          quantity: quantity,
+          success_url: `${window.location.origin}/checkout/success`,
+          cancel_url: `${window.location.origin}/checkout`
         })
       })
 
       if (!response.ok) {
         const errorData = await response.json()
-        throw new Error(errorData.detail || 'Failed to create payment intent')
+        throw new Error(errorData.detail || 'Failed to create checkout session')
       }
 
-      const { clientSecret } = await response.json()
+      const { url } = await response.json()
 
-      // Initialize Stripe
-      const stripe = await stripePromise
-      if (!stripe) {
-        throw new Error('Stripe failed to initialize')
-      }
-
-      // Redirect to Stripe Checkout
-      const { error: stripeError } = await stripe.redirectToCheckout({
-        clientSecret: clientSecret,
-      })
-
-      if (stripeError) {
-        throw new Error(stripeError.message)
-      }
+      // Redirect to Stripe Checkout (simpler - just redirect!)
+      window.location.href = url
 
     } catch (err) {
       setError(err.message)

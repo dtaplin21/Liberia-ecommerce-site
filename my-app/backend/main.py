@@ -29,6 +29,15 @@ class PaymentIntentRequest(BaseModel):
     currency: str = "usd"
     metadata: dict = {}
 
+class CheckoutSessionRequest(BaseModel):
+    amount: int  # Amount in cents
+    currency: str = "usd"
+    customer_email: str
+    customer_name: str
+    quantity: int
+    success_url: str
+    cancel_url: str
+
 app = FastAPI()
 
 # Add CORS middleware to allow frontend to call backend
@@ -77,6 +86,45 @@ async def create_payment_intent(request: PaymentIntentRequest):
         return {
             "clientSecret": intent.client_secret,
             "paymentIntentId": intent.id
+        }
+    except stripe.error.StripeError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# Checkout Session Endpoint
+@app.post("/create-checkout-session")
+async def create_checkout_session(request: CheckoutSessionRequest):
+    try:
+        # Calculate unit price (total / quantity)
+        unit_price = request.amount // request.quantity
+        
+        session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': request.currency,
+                    'product_data': {
+                        'name': 'Divine Lumina Cocoa Butter',
+                        'description': 'Raw & Unrefined Cocoa Butter - 8 oz',
+                    },
+                    'unit_amount': unit_price,
+                },
+                'quantity': request.quantity,
+            }],
+            mode='payment',
+            customer_email=request.customer_email,
+            metadata={
+                'customer_name': request.customer_name,
+                'quantity': str(request.quantity),
+                'product': 'Divine Lumina Cocoa Butter'
+            },
+            success_url=request.success_url + '?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url=request.cancel_url,
+        )
+        return {
+            "sessionId": session.id,
+            "url": session.url  # This is the Stripe Checkout URL
         }
     except stripe.error.StripeError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -155,7 +203,20 @@ async def stripe_webhook(request: Request):
         raise HTTPException(status_code=400, detail=f"Invalid signature: {str(e)}")
 
     # Handle the event
-    if event["type"] == "payment_intent.succeeded":
+    if event["type"] == "checkout.session.completed":
+        session = event["data"]["object"]
+        
+        # Retrieve the payment intent from the session
+        payment_intent_id = session.payment_intent
+        
+        # Get full payment intent details
+        payment_intent = stripe.PaymentIntent.retrieve(payment_intent_id)
+        
+        # Save order to database
+        save_order_to_database(payment_intent)
+        print(f"Checkout completed: {session['id']}")
+        
+    elif event["type"] == "payment_intent.succeeded":
         payment_intent = event["data"]["object"]
         
         # Payment succeeded - save order to database

@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Fund from './pages/Fund'
 import Product from './pages/Product'
 import Checkout from './pages/Checkout'
+import CheckoutSuccess from './pages/CheckoutSuccess'
 import Story from './pages/Story'
 import Impact from './pages/Impact'
 import FAQ from './pages/FAQ'
@@ -19,6 +20,7 @@ function App() {
         <Route path="/fund" element={<Fund />} />
         <Route path="/product" element={<Product />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/success" element={<CheckoutSuccess />} />
         <Route path="/story" element={<Story />} />
         <Route path="/impact" element={<Impact />} />
         <Route path="/faq" element={<FAQ />} />
