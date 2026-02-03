@@ -13,7 +13,7 @@ import Contact from './pages/Contact'
 import './App.css'
 
 // Check if coming soon mode is enabled
-const isComingSoon = import.meta.env.VITE_COMING_SOON === "true"
+const isComingSoon = import.meta.env.NEXT_PUBLIC_COMING_SOON === "true"
 
 function App() {
   // Gate: If coming soon is enabled, show ONLY ComingSoon (no router, no header)
