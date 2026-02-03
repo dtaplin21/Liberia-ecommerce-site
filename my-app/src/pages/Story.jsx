@@ -1,9 +1,28 @@
 function Story() {
   return (
-    <section style={{padding: '60px 20px', maxWidth: '900px', margin: '0 auto'}}>
+    <section style={{padding: '60px 20px', maxWidth: '1200px', margin: '0 auto'}}>
       <h2>Our Story</h2>
       
       <div style={{lineHeight: '1.8', fontSize: '1.1rem', color: '#333'}}>
+        {/* Image floated right for first section */}
+        <div className="story-image-container" style={{
+          float: 'right',
+          margin: '0 0 2rem 2rem',
+          maxWidth: '400px',
+          width: '100%'
+        }}>
+          <img 
+            src="/images/village_with_darcy.jpg" 
+            alt="Village with Darcy" 
+            style={{
+              width: '100%',
+              height: 'auto',
+              borderRadius: '8px',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+            }}
+          />
+        </div>
+
         <p>
           In the heart of West Africa, Liberia's farmers have long stood at the foundation of the nation's economy
           and cultural identity. We produce over 34% of Liberia's GDP and represent more than 60% of the national
@@ -28,6 +47,9 @@ function Story() {
           our neighbors, and extended kin, have always been part of this story. They are not just farmers. They are
           stewards of our history, our land, and our community's survival.
         </p>
+
+        {/* Clear float so remaining content fills full width */}
+        <div style={{clear: 'both'}}></div>
 
         <p>
           My journey began in 1999, at the height of Liberia's civil unrest. Forced to leave the country, my family

@@ -7,9 +7,8 @@ import Product from './pages/Product'
 import Checkout from './pages/Checkout'
 import CheckoutSuccess from './pages/CheckoutSuccess'
 import Story from './pages/Story'
-import Impact from './pages/Impact'
-import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
+import ProgressTracker from './pages/progressTracker'
 import './App.css'
 
 // Check if coming soon mode is enabled
@@ -32,9 +31,8 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
         <Route path="/story" element={<Story />} />
-        <Route path="/impact" element={<Impact />} />
-        <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/progress" element={<ProgressTracker />} />
         <Route path="*" element={<div style={{padding: '60px 20px', textAlign: 'center'}}><h2>404 - Page Not Found</h2><p>The page you're looking for doesn't exist.</p></div>} />
       </Routes>
     </Router>

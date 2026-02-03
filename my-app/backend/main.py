@@ -70,6 +70,36 @@ def get_products():
             cursor.close()
             conn.close()
 
+@app.get("/stats")
+def get_stats():
+    conn = None
+    try:
+        conn = connect_to_db()
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Get total proceeds and total jars sold from completed orders
+        cursor.execute("""
+            SELECT 
+                COALESCE(SUM(total_amount), 0) as total_proceeds,
+                COALESCE(SUM(quantity), 0) as total_jars_sold,
+                COUNT(*) as total_orders
+            FROM Orders
+            WHERE status = 'completed'
+        """)
+        
+        stats = cursor.fetchone()
+        return {
+            "total_proceeds": float(stats['total_proceeds']) if stats['total_proceeds'] else 0,
+            "total_jars_sold": int(stats['total_jars_sold']) if stats['total_jars_sold'] else 0,
+            "total_orders": int(stats['total_orders']) if stats['total_orders'] else 0
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if conn:
+            cursor.close()
+            conn.close()
+
 # Payment Intent Endpoint
 @app.post("/create-payment-intent")
 async def create_payment_intent(request: PaymentIntentRequest):

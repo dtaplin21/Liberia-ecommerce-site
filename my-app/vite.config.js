@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   define: {
-    'import.meta.env.NEXT_PUBLIC_COMING_SOON': JSON.stringify(process.env.NEXT_PUBLIC_COMING_SOON || 'false')
+    'import.meta.env.NEXT_PUBLIC_COMING_SOON': JSON.stringify(process.env.NEXT_PUBLIC_COMING_SOON || 'true')
   }
 })

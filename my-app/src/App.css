@@ -336,6 +336,15 @@ footer {
   }
 }
 
+/* Story page image responsive */
+@media (max-width: 768px) {
+  .story-image-container {
+    float: none !important;
+    margin: 0 auto 2rem !important;
+    max-width: 100% !important;
+  }
+}
+
 /* Checkout Page Responsive Styles */
 .checkout-container {
   max-width: 1200px;

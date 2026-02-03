@@ -6,7 +6,7 @@ function Checkout() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   
-  const productPrice = 30
+  const productPrice = 20
   const shippingCost = 5
   const taxRate = 0.0725  // 7.25% California sales tax
   

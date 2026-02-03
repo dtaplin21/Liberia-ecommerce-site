@@ -5,7 +5,7 @@ function Home() {
     <>
       <section className="hero">
         <h1>From Raw to Real</h1>
-        <p>Every jar helps build Liberia's first scalable cocoa processing facility.</p>
+        <p>Every jar helps build Liberia's first community owned scalable cocoa processing facility.</p>
         <Link to="/checkout" className="btn">Support the Processing Facility</Link>
         <Link to="/product" className="btn btn-secondary">See the Cocoa Butter</Link>
       </section>
