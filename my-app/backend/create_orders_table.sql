@@ -21,3 +21,4 @@ CREATE INDEX IF NOT EXISTS idx_stripe_payment_intent_id ON Orders(stripe_payment
 -- Create index on customer email for order history
 CREATE INDEX IF NOT EXISTS idx_customer_email ON Orders(customer_email);
 
+
