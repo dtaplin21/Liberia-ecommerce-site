@@ -3,6 +3,41 @@ import { Link } from 'react-router-dom'
 function Home() {
   return (
     <>
+      {/* Hero Section with Image + Card Layout */}
+      <section className="hero-split">
+        <div className="hero-image-container">
+          <img 
+            src="/images/village_with_darcy.jpg" 
+            alt="Liberia cocoa farmers with pods" 
+            className="hero-image"
+          />
+        </div>
+        <div className="hero-card">
+          <div className="hero-card-content">
+            <h2>Impact Snapshot</h2>
+            <div className="impact-grid">
+              <div className="impact-item">
+                <h3>Jobs Created</h3>
+                <p>Local employment in processing and farming</p>
+              </div>
+              <div className="impact-item">
+                <h3>Farmers Supported</h3>
+                <p>700-acre farm in Nimba County + community partners</p>
+              </div>
+              <div className="impact-item">
+                <h3>Value Retained Locally</h3>
+                <p>Keeping wealth in Liberia</p>
+              </div>
+              <div className="impact-item">
+                <h3>Community Ownership</h3>
+                <p>Shared prosperity model</p>
+              </div>
+            </div>
+            <Link to="/progress" className="btn" style={{marginTop: '2rem'}}>View Progress</Link>
+          </div>
+        </div>
+      </section>
+
       <section className="hero">
         <h1>From Raw to Real</h1>
         <p>Every jar helps build Liberia's first community owned scalable cocoa processing facility.</p>
@@ -59,28 +94,6 @@ function Home() {
         </div>
         <div style={{textAlign: 'center'}}>
           <Link to="/product" className="btn">Get a Jar & Support the Build</Link>
-        </div>
-      </section>
-
-      <section style={{background: 'var(--secondary)', color: 'white'}}>
-        <h2>Impact Snapshot</h2>
-        <div className="grid">
-          <div style={{textAlign: 'center'}}>
-            <h3>Jobs Created</h3>
-            <p>Local employment in processing and farming</p>
-          </div>
-          <div style={{textAlign: 'center'}}>
-            <h3>Farmers Supported</h3>
-            <p>700-acre farm in Nimba County + community partners</p>
-          </div>
-          <div style={{textAlign: 'center'}}>
-            <h3>Value Retained Locally</h3>
-            <p>Keeping wealth in Liberia</p>
-          </div>
-          <div style={{textAlign: 'center'}}>
-            <h3>Community Ownership</h3>
-            <p>Shared prosperity model</p>
-          </div>
         </div>
       </section>
 

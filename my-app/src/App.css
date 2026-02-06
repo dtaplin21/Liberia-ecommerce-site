@@ -67,6 +67,79 @@ nav a.active {
   border-bottom: 2px solid var(--accent);
 }
 
+/* Hero Split Layout - Image + Card */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr; /* ~62% image, ~38% card */
+  min-height: 450px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero-image-container {
+  position: relative;
+  overflow: hidden;
+  height: 100%; 
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; /* Center the crop */
+  display: block;
+}
+
+.hero-card {
+  background: linear-gradient(135deg, var(--secondary) 0%, #6b8550 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  position: relative;
+  margin-left: -50px;
+  /* height: 100%; */
+  align-self: center;
+}
+
+.hero-card-content {
+  max-width: 400px; /* Slightly smaller to match template */
+  width: 100%;
+  padding: 0 1.5rem; /* More horizontal padding */
+}
+
+.hero-card-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.impact-item {
+  text-align: left;
+}
+
+.impact-item h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.impact-item p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.5;
+  margin: 0;
+}
+
 .hero {
   background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://via.placeholder.com/1600x800?text=Hero+Farmers+with+Cocoa') center/cover no-repeat;
   color: white;
@@ -86,12 +159,37 @@ nav a.active {
 }
 
 @media (max-width: 768px) {
-  .hero {
-    padding: 100px 15px 60px;
+  .hero-split {
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
   
-  .hero h1 {
-    font-size: 2.5rem;
+  .hero-image-container {
+    min-height: 400px;
+  }
+  
+  .hero-card {
+    padding: 2rem 1.5rem;
+    margin-left: 0; /* Remove overlap on mobile */
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .hero-card-content h2 {
+    font-size: 2rem;
+  }
+  
+  .impact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .hero { 
+    padding: 100px 15px 60px; 
+  }
+  
+  .hero h1 { 
+    font-size: 2.5rem; 
   }
   
   .hero p {
