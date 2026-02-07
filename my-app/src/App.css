@@ -167,10 +167,14 @@ nav a.active {
   .hero-split {
     grid-template-columns: 1fr;
     min-height: auto;
+    margin: 3rem auto 4rem auto; /* Reduce excessive margins on mobile */
+    padding: 0 1rem; /* Reduce side padding */
+    grid-auto-rows: minmax(300px, auto); /* More flexible height on mobile */
   }
   
   .hero-image-container {
-    min-height: 400px;
+    min-height: 300px; /* Reduced from 400px */
+    max-height: 400px; /* Add max-height constraint */
   }
   
   .hero-card {
@@ -178,10 +182,17 @@ nav a.active {
     margin-left: 0; /* Remove overlap on mobile */
     margin-top: 0;
     margin-bottom: 0;
+    height: auto; /* Allow card to size naturally on mobile */
+  }
+  
+  .hero-card-content {
+    max-width: 100%; /* Full width on mobile */
+    padding: 0; /* Remove horizontal padding */
   }
   
   .hero-card-content h2 {
     font-size: 2rem;
+    margin-bottom: 1.5rem; /* Reduce spacing */
   }
   
   .impact-grid {
