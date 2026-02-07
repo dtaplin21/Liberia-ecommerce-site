@@ -70,42 +70,43 @@ nav a.active {
 /* Hero Split Layout - Image + Card */
 .hero-split {
   display: grid;
-  grid-template-columns: 1.6fr 1fr; /* ~62% image, ~38% card */
-  height: 700px; /* Increased height for larger container */
-  max-width: 1600px; /* Increased max-width for larger container */
-  margin: 0 auto 6rem; /* Added bottom margin for spacing from .hero section */
-  padding: 2rem 0 100px 0; /* Add padding-bottom matching overlap amount */
+  grid-template-columns: 1fr 1fr; /* Equal columns */
+  gap: 0; /* No gap between columns */
+  max-width: 1200px; /* Reduced from 1600px */
+  margin: 5rem auto; /* Increased vertical spacing for more white space */
+  padding: 0 2rem; /* Side padding for mobile */
+  grid-auto-rows: minmax(400px, 500px); /* Constrain height */
+  align-items: center; /* Vertically center both items */
   position: relative;
   overflow: visible; /* Allow card to overlap image */
 }
 
 .hero-image-container {
   position: relative;
-  overflow: hidden; /* Keep hidden to maintain container size */
-  height: 100%; /* Match grid row height */
+  overflow: hidden;
+  height: 100%; /* Fill grid row */
+  z-index: 2; /* Image on top of card */
 }
 
 .hero-image {
   width: 100%;
-  height: 100%;
-  object-fit: contain; /* Show full image without cropping */
+  height: 100%; /* Changed from auto */
+  object-fit: cover;
   object-position: center;
   display: block;
 }
 
 .hero-card {
-  background: linear-gradient(135deg, var(--secondary) 0%, #6b8550 100%);
+  background: linear-gradient(135deg, #8B6F47 0%, #6B4E3D 100%); /* Brown gradient */
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 3rem;
   position: relative;
-  margin-left: -100px; /* Increased from -50px for more overlap */
-  height: auto; /* Changed from 100% */
-  max-height: 500px; /* Constrain maximum height */
-  align-self: center; /* Center vertically instead of stretching */
-  z-index: 10; /* Ensure card appears on top of image */
+  margin-left: -80px; /* Overlap amount - adjust as needed */
+  z-index: 1; /* Card behind image */
+  height: 100%; /* Fill grid row */
 }
 
 .hero-card-content {
