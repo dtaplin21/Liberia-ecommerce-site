@@ -6,7 +6,7 @@ from psycopg2.extras import RealDictCursor
 load_dotenv()
 
 def connect_to_db():
-   conn = psycopg2.connect(
+    conn = psycopg2.connect(
         host=os.getenv("DB_HOST", "localhost"),
         database=os.getenv("DB_NAME", "liberia_ecommerce"),
         user=os.getenv("DB_USER", "dtaplin21"),

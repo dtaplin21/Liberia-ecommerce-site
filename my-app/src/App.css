@@ -71,23 +71,25 @@ nav a.active {
 .hero-split {
   display: grid;
   grid-template-columns: 1.6fr 1fr; /* ~62% image, ~38% card */
-  min-height: 450px;
-  max-width: 1400px;
-  margin: 0 auto;
+  height: 700px; /* Increased height for larger container */
+  max-width: 1600px; /* Increased max-width for larger container */
+  margin: 0 auto 6rem; /* Added bottom margin for spacing from .hero section */
+  padding: 2rem 0 100px 0; /* Add padding-bottom matching overlap amount */
   position: relative;
+  overflow: visible; /* Allow card to overlap image */
 }
 
 .hero-image-container {
   position: relative;
-  overflow: hidden;
-  height: 100%; 
+  overflow: hidden; /* Keep hidden to maintain container size */
+  height: 100%; /* Match grid row height */
 }
 
 .hero-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center; /* Center the crop */
+  object-fit: contain; /* Show full image without cropping */
+  object-position: center;
   display: block;
 }
 
@@ -99,9 +101,11 @@ nav a.active {
   justify-content: center;
   padding: 3rem;
   position: relative;
-  margin-left: -50px;
-  /* height: 100%; */
-  align-self: center;
+  margin-left: -100px; /* Increased from -50px for more overlap */
+  height: auto; /* Changed from 100% */
+  max-height: 500px; /* Constrain maximum height */
+  align-self: center; /* Center vertically instead of stretching */
+  z-index: 10; /* Ensure card appears on top of image */
 }
 
 .hero-card-content {
