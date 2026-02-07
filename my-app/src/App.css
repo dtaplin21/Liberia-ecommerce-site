@@ -73,7 +73,7 @@ nav a.active {
   grid-template-columns: 1fr 1fr; /* Equal columns */
   gap: 0; /* No gap between columns */
   max-width: 1200px; /* Reduced from 1600px */
-  margin: 5rem auto; /* Increased vertical spacing for more white space */
+  margin: 12rem auto 22rem auto; /* Increased vertical spacing for more white space */
   padding: 0 2rem; /* Side padding for mobile */
   grid-auto-rows: minmax(400px, 500px); /* Constrain height */
   align-items: center; /* Vertically center both items */
