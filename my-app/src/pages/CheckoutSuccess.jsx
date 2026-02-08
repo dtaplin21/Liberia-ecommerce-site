@@ -18,7 +18,7 @@ function CheckoutSuccess() {
         )}
         <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
           <Link to="/" className="btn">Return to Home</Link>
-          <Link to="/product" className="btn btn-secondary">Shop More</Link>
+          <Link to="/fund" className="btn btn-secondary">Shop More</Link>
         </div>
       </div>
     </section>

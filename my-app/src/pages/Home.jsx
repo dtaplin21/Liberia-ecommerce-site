@@ -42,7 +42,7 @@ function Home() {
         <h1>From Raw to Real</h1>
         <p>Every jar helps build Liberia's first community owned scalable cocoa processing facility.</p>
         <Link to="/checkout" className="btn">Support the Processing Facility</Link>
-        <Link to="/product" className="btn btn-secondary">See the Cocoa Butter</Link>
+        <Link to="/fund" className="btn btn-secondary">See the Cocoa Butter</Link>
       </section>
 
       <section>
@@ -93,7 +93,7 @@ function Home() {
           <img src="/images/cocoa_jar.JPEG" alt="Divine Lumina Raw & Unrefined Cocoa Butter" className="product-img" />
         </div>
         <div style={{textAlign: 'center'}}>
-          <Link to="/product" className="btn">Get a Jar & Support the Build</Link>
+          <Link to="/fund" className="btn">Get a Jar & Support the Build</Link>
         </div>
       </section>
 

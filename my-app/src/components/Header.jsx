@@ -32,7 +32,6 @@ function Header() {
         <Link to="/" onClick={closeMenu}>Home</Link>
         <Link to="/fund" onClick={closeMenu}>Fund the Factory</Link>
         <Link to="/progress" onClick={closeMenu}>Progress Tracker</Link>
-        <Link to="/product" onClick={closeMenu}>Cocoa Butter</Link>
         <Link to="/story" onClick={closeMenu}>Our Story</Link>
         <Link to="/contact" onClick={closeMenu}>Contact</Link>
       </nav>
