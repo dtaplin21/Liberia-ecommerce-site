@@ -35,6 +35,11 @@ class CheckoutSessionRequest(BaseModel):
     customer_email: str
     customer_name: str
     quantity: int
+    donation: float = 0.0  # Donation amount in dollars
+    customer_address: str = ""
+    customer_city: str = ""
+    customer_state: str = ""
+    customer_zip: str = ""
     success_url: str
     cancel_url: str
 
@@ -129,6 +134,19 @@ async def create_checkout_session(request: CheckoutSessionRequest):
         # Calculate unit price (total / quantity)
         unit_price = request.amount // request.quantity
         
+        # Build metadata with all order details including donation and shipping
+        metadata = {
+            'customer_name': request.customer_name,
+            'customer_email': request.customer_email,
+            'quantity': str(request.quantity),
+            'product': 'Divine Lumina Cocoa Butter',
+            'donation': str(request.donation),
+            'customer_address': request.customer_address,
+            'customer_city': request.customer_city,
+            'customer_state': request.customer_state,
+            'customer_zip': request.customer_zip,
+        }
+        
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
@@ -144,11 +162,7 @@ async def create_checkout_session(request: CheckoutSessionRequest):
             }],
             mode='payment',
             customer_email=request.customer_email,
-            metadata={
-                'customer_name': request.customer_name,
-                'quantity': str(request.quantity),
-                'product': 'Divine Lumina Cocoa Butter'
-            },
+            metadata=metadata,
             success_url=request.success_url + '?session_id={CHECKOUT_SESSION_ID}',
             cancel_url=request.cancel_url,
         )
@@ -161,7 +175,76 @@ async def create_checkout_session(request: CheckoutSessionRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Helper function to save order to database
+# Helper function to save order to database from checkout session
+def save_order_from_session(session):
+    conn = None
+    try:
+        conn = connect_to_db()
+        cursor = conn.cursor()
+        
+        # Extract order details from session metadata
+        metadata = session.get('metadata', {})
+        
+        # Get amount_total from session (in cents) - this is the total paid
+        amount_total = session.get('amount_total', 0) / 100  # Convert to dollars
+        
+        # Use session ID as unique identifier to prevent duplicates
+        session_id = session.get('id')
+        
+        # Check if order already exists
+        cursor.execute("""
+            SELECT id FROM Orders WHERE stripe_payment_intent_id = %s
+        """, (session_id,))
+        
+        if cursor.fetchone():
+            print(f"Order already exists for session: {session_id}")
+            cursor.close()
+            return True  # Already saved, no error
+        
+        cursor.execute("""
+            INSERT INTO Orders (
+                stripe_payment_intent_id,
+                customer_name,
+                customer_email,
+                customer_address,
+                customer_city,
+                customer_state,
+                customer_zip,
+                total_amount,
+                quantity,
+                product_name,
+                status,
+                created_at
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW())
+        """, (
+            session_id,
+            metadata.get('customer_name', ''),
+            metadata.get('customer_email', ''),
+            metadata.get('customer_address', ''),
+            metadata.get('customer_city', ''),
+            metadata.get('customer_state', ''),
+            metadata.get('customer_zip', ''),
+            amount_total,
+            int(metadata.get('quantity', 1)),
+            metadata.get('product', 'Divine Lumina Cocoa Butter'),
+            'completed'
+        ))
+        
+        conn.commit()
+        cursor.close()
+        print(f"Order saved successfully for session: {session_id}")
+        return True
+        
+    except Exception as e:
+        print(f"Error saving order: {str(e)}")
+        if conn:
+            conn.rollback()
+        return False
+    finally:
+        if conn:
+            conn.close()
+
+# Helper function to save order to database from payment intent (kept for backward compatibility)
 def save_order_to_database(payment_intent):
     conn = None
     try:
@@ -236,22 +319,16 @@ async def stripe_webhook(request: Request):
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
         
-        # Retrieve the payment intent from the session
-        payment_intent_id = session.payment_intent
-        
-        # Get full payment intent details
-        payment_intent = stripe.PaymentIntent.retrieve(payment_intent_id)
-        
-        # Save order to database
-        save_order_to_database(payment_intent)
+        # Save order to database directly from checkout session
+        # This is the primary event for Stripe Checkout sessions
+        save_order_from_session(session)
         print(f"Checkout completed: {session['id']}")
         
     elif event["type"] == "payment_intent.succeeded":
+        # This handles direct payment intents (if used elsewhere)
         payment_intent = event["data"]["object"]
-        
-        # Payment succeeded - save order to database
-        save_order_to_database(payment_intent)
-        print(f"Payment succeeded: {payment_intent['id']}")
+        print(f"Payment intent succeeded: {payment_intent['id']}")
+        # Note: For checkout sessions, use checkout.session.completed instead
         
     elif event["type"] == "payment_intent.payment_failed":
         payment_intent = event["data"]["object"]
@@ -262,5 +339,3 @@ async def stripe_webhook(request: Request):
         print(f"Payment canceled: {payment_intent['id']}")
 
     return Response(status_code=200)
-
-    

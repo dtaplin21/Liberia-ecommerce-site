@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react'
 function ProgressTracker() {
   const [stats, setStats] = useState({
     total_proceeds: 0,
-    total_jars_sold: 0,
-    total_orders: 0
+    total_jars_sold: 0
   })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -97,24 +96,6 @@ function ProgressTracker() {
           <p style={{opacity: 0.9, margin: 0}}>Cocoa butter jars</p>
         </div>
 
-        {/* Total Orders Card */}
-        <div className="card" style={{
-          padding: '2rem',
-          textAlign: 'center',
-          background: 'linear-gradient(135deg, var(--secondary) 0%, #6b8550 100%)',
-          color: 'white'
-        }}>
-          <h3 style={{marginTop: 0, color: 'white', fontSize: '1.5rem'}}>Total Orders</h3>
-          <p style={{
-            fontSize: '3rem',
-            fontWeight: 'bold',
-            margin: '1rem 0',
-            color: 'white'
-          }}>
-            {stats.total_orders}
-          </p>
-          <p style={{opacity: 0.9, margin: 0}}>Completed transactions</p>
-        </div>
       </div>
 
       <div style={{
