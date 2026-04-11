@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import cocoaProcessVideo from '../assets/cocoa_process_video.MP4'
 
 function Fund() {
   return (
@@ -9,6 +10,21 @@ function Fund() {
         <img src="/images/cocoa_jar.JPEG" alt="8 oz jar of Divine Lumina Cocoa Butter" className="product-img" />
         <p style={{fontSize: '1.4rem', margin: '2rem 0'}}>8 oz • Every jar directly supports processing infrastructure in Liberia.</p>
         <Link to="/checkout" className="btn" style={{fontSize: '1.5rem', padding: '1.2rem 3rem'}}>Purchase & Support the Build</Link>
+        <div style={{ marginTop: '2.5rem', maxWidth: '900px', marginLeft: 'auto', marginRight: 'auto' }}>
+          <video
+            src={cocoaProcessVideo}
+            controls
+            playsInline
+            preload="metadata"
+            style={{
+              width: '100%',
+              borderRadius: '12px',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.15)'
+            }}
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </section>
 
       {/* What Makes This Different */}
