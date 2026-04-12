@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import ComingSoon from "./pages/ComingSoon"
 import Header from './components/Header'
 import Home from './pages/Home'
 import Fund from './pages/Fund'
@@ -10,16 +9,7 @@ import Contact from './pages/Contact'
 import ProgressTracker from './pages/progressTracker'
 import './App.css'
 
-// Check if coming soon mode is enabled (only in production)
-const isComingSoon = import.meta.env.MODE === 'production' && import.meta.env.NEXT_PUBLIC_COMING_SOON === "true"
-
 function App() {
-  // Gate: If coming soon is enabled, show ONLY ComingSoon (no router, no header)
-  if (isComingSoon) {
-    return <ComingSoon />
-  }
-
-  // Normal app with router
   return (
     <Router>
       <Header />
