@@ -18,11 +18,11 @@ function Home() {
             <p>Liberia exports nearly all its cocoa raw.</p>
           </div>
           <div>
-            <img src="/images/cocoa_closeup.JPEG" alt="Close-up of cocoa pod" />
+            <img src="/images/Shipping.PNG" alt="Cocoa shipping and logistics" />
             <p>Most of the value is captured abroad.</p>
           </div>
           <div>
-            <img src="/images/farmer_and_tree.JPEG" alt="Farmer holding cocoa tree" />
+            <img src="/images/processing%20facility.PNG" alt="Cocoa processing facility" />
             <p>This isn't a farming problem—it's a processing problem.</p>
           </div>
         </div>
@@ -63,7 +63,7 @@ function Home() {
         </p>
         <div className="grid">
           <div className="card">
-            <img src="/images/cocoa_closeup.JPEG" alt="Cocoa pods on tree" />
+            <img src="/images/Shipping.PNG" alt="Cocoa shipping and logistics" />
             <h3>Raw Cocoa Beans</h3>
           </div>
           <div className="card">

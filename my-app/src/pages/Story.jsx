@@ -12,8 +12,8 @@ function Story() {
           width: '100%'
         }}>
           <img 
-            src="/images/village_with_darcy.jpg" 
-            alt="Village with Darcy" 
+            src="/images/Our%20story.JPG" 
+            alt="Our story — Liberia farm and community" 
             style={{
               width: '100%',
               height: 'auto',
@@ -40,6 +40,22 @@ function Story() {
         <p style={{fontWeight: 'bold', marginTop: '2rem'}}>
           For me, this reality is more than statistics—it's deeply personal.
         </p>
+
+        <div style={{ margin: '2rem 0' }}>
+          <img
+            src="/images/Our%20story%202.JPEG"
+            alt="Our story — on the farm in Liberia"
+            style={{
+              width: '100%',
+              maxWidth: '900px',
+              height: 'auto',
+              display: 'block',
+              margin: '0 auto',
+              borderRadius: '8px',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+            }}
+          />
+        </div>
 
         <p>
           Our farm is in Segbehplay, Nimba County, a place where my family has lived and worked the land for
