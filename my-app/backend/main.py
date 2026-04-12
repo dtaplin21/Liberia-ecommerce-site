@@ -11,8 +11,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Initialize Stripe
+# Initialize Stripe (secret key must be in backend/.env — see env.example)
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+if not stripe.api_key:
+    print(
+        "WARNING: STRIPE_SECRET_KEY is not set. Copy backend/env.example to backend/.env "
+        "and add your Stripe test secret key (sk_test_...)."
+    )
 
 class Product(BaseModel):
     id: int

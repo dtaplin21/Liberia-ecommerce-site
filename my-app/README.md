@@ -162,22 +162,13 @@ backend/
 
 ## 🔐 Environment Variables
 
-### Frontend (`.env`)
-```
-VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
-```
+1. **Backend** — `my-app/backend/.env` (copy from `backend/env.example`):
+   - **STRIPE_SECRET_KEY** — required for Stripe Checkout (`sk_test_...` from [API keys](https://dashboard.stripe.com/test/apikeys)).
+   - **STRIPE_WEBHOOK_SECRET** — optional for local webhook testing.
+   - Database variables as in `env.example`.
 
-### Backend (`.env`)
-```
-DB_HOST=localhost
-DB_NAME=liberia_ecommerce
-DB_USER=dtaplin21
-DB_PASSWORD=
-DB_PORT=5432
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
-```
+2. **Frontend** — `my-app/.env` (copy from `env.example`):
+   - **VITE_STRIPE_PUBLISHABLE_KEY** — your test publishable key (`pk_test_...`). Same dashboard as the secret key. Needed if you add Stripe.js later; hosted Checkout only requires the backend secret key.
 
 ## 🧪 Testing Stripe Integration
 
