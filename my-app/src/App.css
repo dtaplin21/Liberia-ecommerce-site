@@ -291,19 +291,30 @@ h2 {
   text-align: center;
 }
 
-.card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
+/* Uniform 4:3 tiles for grid images (object-fit: cover crops as needed) */
+.grid-photo-wrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
 }
 
-.grid img {
+.grid-photo-wrap img {
   width: 100%;
-  max-width: 100%;
-  height: auto;
-  max-height: 400px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  display: block;
+}
+
+/* Image strip at top of cards (Solution section); card radius clips corners */
+.card .grid-photo-wrap {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.card:has(.grid-photo-wrap) h3 {
+  margin: 0;
+  padding: 1rem 1rem 1.25rem;
 }
 
 .product-hero {

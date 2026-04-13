@@ -14,15 +14,21 @@ function Home() {
         <h2>The Problem</h2>
         <div className="grid">
           <div>
-            <img src="/images/Liberia_cocoa_farmers_pods.JPEG" alt="Liberia cocoa farmers with pods" />
+            <div className="grid-photo-wrap">
+              <img src="/images/Liberia_cocoa_farmers_pods.JPEG" alt="Liberia cocoa farmers with pods" />
+            </div>
             <p>Liberia exports nearly all its cocoa raw.</p>
           </div>
           <div>
-            <img src="/images/Shipping.PNG" alt="Cocoa shipping and logistics" />
+            <div className="grid-photo-wrap">
+              <img src="/images/Shipping.PNG" alt="Cocoa shipping and logistics" />
+            </div>
             <p>Most of the value is captured abroad.</p>
           </div>
           <div>
-            <img src="/images/processing%20facility.PNG" alt="Cocoa processing facility" />
+            <div className="grid-photo-wrap">
+              <img src="/images/processing%20facility.PNG" alt="Cocoa processing facility" />
+            </div>
             <p>This isn't a farming problem—it's a processing problem.</p>
           </div>
         </div>
@@ -63,15 +69,21 @@ function Home() {
         </p>
         <div className="grid">
           <div className="card">
-            <img src="/images/Shipping.PNG" alt="Cocoa shipping and logistics" />
+            <div className="grid-photo-wrap">
+              <img src="/images/Shipping.PNG" alt="Cocoa shipping and logistics" />
+            </div>
             <h3>Raw Cocoa Beans</h3>
           </div>
           <div className="card">
-            <img src="/images/cocoa_jar.JPEG" alt="Divine Lumina Cocoa Butter Jar" />
+            <div className="grid-photo-wrap">
+              <img src="/images/cocoa_jar.JPEG" alt="Divine Lumina Cocoa Butter Jar" />
+            </div>
             <h3>→ Cocoa Butter</h3>
           </div>
           <div className="card">
-            <img src="/images/farmer_holding_pods.jpeg" alt="Farmers holding cocoa pods" />
+            <div className="grid-photo-wrap">
+              <img src="/images/farmer_holding_pods.jpeg" alt="Farmers holding cocoa pods" />
+            </div>
             <h3>Finished Product & Opportunity</h3>
           </div>
         </div>
