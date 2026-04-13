@@ -38,7 +38,7 @@ function Story() {
         </p>
 
         <p style={{fontWeight: 'bold', marginTop: '2rem'}}>
-          For me, this reality is more than statistics—it's deeply personal.
+          For us, this reality is more than statistics—it's deeply personal.
         </p>
 
         <div style={{ margin: '2rem 0' }}>
