@@ -9,6 +9,7 @@ from database import connect_to_db
 from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv
 from email_notify import send_checkout_confirmation_emails
+from stripe_checkout_utils import customer_email_from_session
 
 load_dotenv()
 
@@ -190,8 +191,11 @@ def save_order_from_session(session):
         
         # Extract order details from session metadata
         metadata = session.get('metadata', {})
-        cust_email = (metadata.get('customer_email') or session.get('customer_email') or '').strip()
-        cust_name = (metadata.get('customer_name') or '').strip()
+        cust_email = customer_email_from_session(session)
+        details = session.get('customer_details') or {}
+        if not isinstance(details, dict):
+            details = {}
+        cust_name = (metadata.get('customer_name') or details.get('name') or '').strip()
 
         # Get amount_total from session (in cents) - this is the total paid
         amount_total = session.get('amount_total', 0) / 100  # Convert to dollars
@@ -311,6 +315,13 @@ async def stripe_webhook(request: Request):
     sig_header = request.headers.get("stripe-signature")
     webhook_secret = os.getenv("STRIPE_WEBHOOK_SECRET")
 
+    if not webhook_secret:
+        print("WEBHOOK: STRIPE_WEBHOOK_SECRET is not set — cannot verify Stripe events")
+        raise HTTPException(
+            status_code=500,
+            detail="Webhook not configured (missing STRIPE_WEBHOOK_SECRET)",
+        )
+
     try:
         # Verify webhook signature
         event = stripe.Webhook.construct_event(
@@ -323,13 +334,23 @@ async def stripe_webhook(request: Request):
         # Invalid signature
         raise HTTPException(status_code=400, detail=f"Invalid signature: {str(e)}")
 
+    print(
+        f"WEBHOOK: {event.get('type')} "
+        f"evt={event.get('id')} "
+        f"livemode={event.get('livemode')}"
+    )
+
     # Handle the event
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
 
         # Save order to database directly from checkout session
         result = save_order_from_session(session)
-        print(f"Checkout completed: {session['id']} (db: {result})")
+        payer_email = customer_email_from_session(session)
+        print(
+            f"Checkout session {session.get('id')}: db={result}, "
+            f"payer_email={'set' if payer_email else 'MISSING'}"
+        )
 
         # Email buyer + merchant only for newly inserted orders (not webhook retries)
         if result == "inserted":
@@ -337,6 +358,13 @@ async def stripe_webhook(request: Request):
                 send_checkout_confirmation_emails(session)
             except Exception as e:
                 print(f"EMAIL: order confirmation failed (order still saved): {e}")
+        elif result == "duplicate":
+            print(
+                "WEBHOOK: duplicate checkout.session.completed for this session — "
+                "emails are only sent on first insert (Stripe retry)."
+            )
+        elif result == "error":
+            print("WEBHOOK: order was not saved — no confirmation emails sent")
         
     elif event["type"] == "payment_intent.succeeded":
         # This handles direct payment intents (if used elsewhere)

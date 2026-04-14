@@ -6,6 +6,8 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from python_http_client import exceptions as http_client_exceptions
 
+from stripe_checkout_utils import customer_email_from_session
+
 
 def _meta(metadata: Mapping[str, Any] | None, key: str, default: str = "") -> str:
     if not metadata:
@@ -58,7 +60,7 @@ def send_checkout_confirmation_emails(session: Mapping[str, Any]) -> None:
         client.set_sendgrid_data_residency("eu")
 
     metadata = session.get("metadata") or {}
-    customer_email = (session.get("customer_email") or _meta(metadata, "customer_email")).strip()
+    customer_email = customer_email_from_session(session)
     customer_name = _meta(metadata, "customer_name", "Customer")
     quantity = _meta(metadata, "quantity", "1")
     product = _meta(metadata, "product", "Divine Lumina Cocoa Butter")
