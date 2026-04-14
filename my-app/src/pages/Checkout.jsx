@@ -53,6 +53,11 @@ function Checkout() {
           customer_email: formData.email,
           customer_name: formData.name,
           quantity: quantity,
+          donation: donationAmount,
+          customer_address: formData.address,
+          customer_city: formData.city,
+          customer_state: formData.state,
+          customer_zip: formData.zip,
           success_url: `${window.location.origin}/checkout/success`,
           cancel_url: `${window.location.origin}/checkout`
         })

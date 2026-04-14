@@ -8,6 +8,7 @@ import stripe
 from database import connect_to_db
 from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv
+from email_notify import send_checkout_confirmation_emails
 
 load_dotenv()
 
@@ -189,10 +190,12 @@ def save_order_from_session(session):
         
         # Extract order details from session metadata
         metadata = session.get('metadata', {})
-        
+        cust_email = (metadata.get('customer_email') or session.get('customer_email') or '').strip()
+        cust_name = (metadata.get('customer_name') or '').strip()
+
         # Get amount_total from session (in cents) - this is the total paid
         amount_total = session.get('amount_total', 0) / 100  # Convert to dollars
-        
+
         # Use session ID as unique identifier to prevent duplicates
         session_id = session.get('id')
         
@@ -204,8 +207,8 @@ def save_order_from_session(session):
         if cursor.fetchone():
             print(f"Order already exists for session: {session_id}")
             cursor.close()
-            return True  # Already saved, no error
-        
+            return "duplicate"
+
         cursor.execute("""
             INSERT INTO Orders (
                 stripe_payment_intent_id,
@@ -223,8 +226,8 @@ def save_order_from_session(session):
             ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW())
         """, (
             session_id,
-            metadata.get('customer_name', ''),
-            metadata.get('customer_email', ''),
+            cust_name,
+            cust_email,
             metadata.get('customer_address', ''),
             metadata.get('customer_city', ''),
             metadata.get('customer_state', ''),
@@ -238,13 +241,13 @@ def save_order_from_session(session):
         conn.commit()
         cursor.close()
         print(f"Order saved successfully for session: {session_id}")
-        return True
-        
+        return "inserted"
+
     except Exception as e:
         print(f"Error saving order: {str(e)}")
         if conn:
             conn.rollback()
-        return False
+        return "error"
     finally:
         if conn:
             conn.close()
@@ -323,11 +326,17 @@ async def stripe_webhook(request: Request):
     # Handle the event
     if event["type"] == "checkout.session.completed":
         session = event["data"]["object"]
-        
+
         # Save order to database directly from checkout session
-        # This is the primary event for Stripe Checkout sessions
-        save_order_from_session(session)
-        print(f"Checkout completed: {session['id']}")
+        result = save_order_from_session(session)
+        print(f"Checkout completed: {session['id']} (db: {result})")
+
+        # Email buyer + merchant only for newly inserted orders (not webhook retries)
+        if result == "inserted":
+            try:
+                send_checkout_confirmation_emails(session)
+            except Exception as e:
+                print(f"EMAIL: order confirmation failed (order still saved): {e}")
         
     elif event["type"] == "payment_intent.succeeded":
         # This handles direct payment intents (if used elsewhere)
