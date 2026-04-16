@@ -70,7 +70,7 @@ function Home() {
         <div className="grid">
           <div className="card">
             <div className="grid-photo-wrap">
-              <img src="/images/Shipping.PNG" alt="Cocoa shipping and logistics" />
+              <img src="/images/Hands_on_seeds.JPG" alt="Hands holding cocoa seeds" />
             </div>
             <h3>Raw Cocoa Beans</h3>
           </div>
@@ -82,7 +82,7 @@ function Home() {
           </div>
           <div className="card">
             <div className="grid-photo-wrap">
-              <img src="/images/farmer_holding_pods.jpeg" alt="Farmers holding cocoa pods" />
+              <img src="/images/pod_beans_chocolate.JPG" alt="Cocoa pods, beans, and chocolate" />
             </div>
             <h3>Finished Product & Opportunity</h3>
           </div>
@@ -108,6 +108,24 @@ function Home() {
           700-acre farm in Nimba County • Community partnership • Traceable & ethical sourcing
         </p>
       </section>
+
+      <footer>
+        <div className="footer-inner">
+          <p className="footer-tagline">
+            The Unnamed Farm — Liberian cocoa, processed with purpose.
+          </p>
+          <nav className="footer-links" aria-label="Footer navigation">
+            <Link to="/">Home</Link>
+            <Link to="/fund">Fund the Factory</Link>
+            <Link to="/progress">Progress Tracker</Link>
+            <Link to="/story">Our Story</Link>
+            <Link to="/contact">Contact</Link>
+          </nav>
+          <p className="footer-muted">
+            &copy; {new Date().getFullYear()} The Unnamed Farm Ltd. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </>
   )
 }
