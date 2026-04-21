@@ -119,6 +119,7 @@ function Home() {
             <Link to="/fund">Fund the Factory</Link>
             <Link to="/progress">Progress Tracker</Link>
             <Link to="/story">Our Story</Link>
+            <Link to="/faq">FAQ</Link>
             <Link to="/contact">Contact</Link>
           </nav>
           <p className="footer-muted">
