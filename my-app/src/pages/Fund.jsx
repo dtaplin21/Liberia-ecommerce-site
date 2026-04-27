@@ -1,21 +1,13 @@
-import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import cocoaProcessVideo from '../assets/cocoa_process_video.MP4'
-
-const COCOA_VIDEO_POSTER = encodeURI('/images/Still shot.png')
+import {
+  HeartHandshake,
+  Droplet,
+  MapPin,
+  Leaf,
+  PackageCheck,
+} from 'lucide-react'
 
 function Fund() {
-  const videoRef = useRef(null)
-  const [showPlayOverlay, setShowPlayOverlay] = useState(true)
-
-  const handlePlayOverlayClick = () => {
-    videoRef.current?.play()
-  }
-
-  const handleVideoPlay = () => {
-    setShowPlayOverlay(false)
-  }
-
   return (
     <>
       {/* Product Hero Section */}
@@ -24,77 +16,6 @@ function Fund() {
         <img src="/images/cocoa_jar.JPEG" alt="8 oz jar of Divine Lumina Cocoa Butter" className="product-img" />
         <p style={{fontSize: '1.4rem', margin: '2rem 0'}}>8 oz • Every jar directly supports processing infrastructure in Liberia.</p>
         <Link to="/checkout" className="btn" style={{fontSize: '1.5rem', padding: '1.2rem 3rem'}}>Purchase & Support the Build</Link>
-        <div
-          style={{
-            position: 'relative',
-            marginTop: '1.75rem',
-            width: '100%',
-            maxWidth: 'min(1280px, 100%)',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            height: 'min(96vh, 680px)',
-            borderRadius: '12px',
-            overflow: 'hidden',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
-            background: '#1a1816'
-          }}
-        >
-          <video
-            ref={videoRef}
-            src={cocoaProcessVideo}
-            poster={COCOA_VIDEO_POSTER}
-            controls={!showPlayOverlay}
-            playsInline
-            preload="metadata"
-            onPlay={handleVideoPlay}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-              display: 'block'
-            }}
-          >
-            Your browser does not support the video tag.
-          </video>
-          {showPlayOverlay && (
-            <button
-              type="button"
-              aria-label="Play cocoa processing video"
-              onClick={handlePlayOverlayClick}
-              style={{
-                position: 'absolute',
-                inset: 0,
-                margin: 0,
-                padding: 0,
-                border: 'none',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'rgba(0,0,0,0.25)',
-                borderRadius: '12px'
-              }}
-            >
-              <span
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 'clamp(64px, 12vw, 96px)',
-                  height: 'clamp(64px, 12vw, 96px)',
-                  borderRadius: '50%',
-                  background: 'rgba(0,0,0,0.55)',
-                  border: '3px solid rgba(255,255,255,0.95)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.35)'
-                }}
-              >
-                <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden style={{ marginLeft: '4px' }}>
-                  <polygon points="6,4 20,12 6,20" fill="white" />
-                </svg>
-              </span>
-            </button>
-          )}
-        </div>
       </section>
 
       {/* What Makes This Different */}
