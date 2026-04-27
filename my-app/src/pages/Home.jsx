@@ -3,11 +3,37 @@ import { Link } from 'react-router-dom'
 function Home() {
   return (
     <>
-      <section className="hero">
-        <h1>From Raw to Real</h1>
-        <p>Every jar helps build Liberia's first community owned scalable cocoa processing facility.</p>
-        <Link to="/checkout" className="btn">Support the Processing Facility</Link>
-        <Link to="/fund" className="btn btn-secondary">See the Cocoa Butter</Link>
+      <section className="hero-home" aria-labelledby="hero-heading">
+        <div className="hero-home-inner">
+          <div className="hero-home-copy">
+            <h1 id="hero-heading">
+              From Liberian cocoa farms to real economic opportunity.
+            </h1>
+            <p className="hero-home-lead">
+              Organic, home-grown cocoa products that help fund local processing, farmer income,
+              and long-term sustainability.
+            </p>
+            <div className="hero-home-ctas">
+              <Link to="/checkout" className="btn">Buy Cocoa Products</Link>
+              <Link to="/fund" className="btn btn-secondary">Fund the Factory</Link>
+            </div>
+            <p className="hero-home-trust">
+              Organic cocoa. Home-grown. Directly tied to Liberian farm impact.
+            </p>
+          </div>
+          <div className="hero-home-media">
+            <div className="hero-home-image-wrap">
+              <img
+                src="/images/Liberia_cocoa_farmers_pods.JPEG"
+                alt="Liberian farmers with cocoa pods at harvest"
+                className="hero-home-image"
+              />
+              <p className="hero-home-overlay-card" role="note">
+                20% supports the farm/factory mission
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="problem-section">
