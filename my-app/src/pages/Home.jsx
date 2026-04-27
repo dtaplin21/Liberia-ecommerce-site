@@ -1,7 +1,115 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
+import cocoaProcessVideo from '../assets/cocoa_process_video.MP4'
 
 const MISSION_PRODUCT_PRICE = 20
+const COCOA_VIDEO_POSTER = encodeURI('/images/Still shot.png')
+const PROCESS_VIDEO_ID = 'cocoa_process_farm_to_product'
+
+/** Pushes to dataLayer and gtag (when present) for GA4 / GTM dashboards. 50% = warm lead signal. */
+function reportProcessVideoEngagement(detail) {
+  if (typeof window === 'undefined') return
+  const payload = {
+    event: 'process_video_engagement',
+    video_id: PROCESS_VIDEO_ID,
+    page_path: window.location?.pathname,
+    ...detail,
+  }
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push(payload)
+  if (typeof window.gtag === 'function') {
+    if (detail.warm_lead) {
+      window.gtag('event', 'process_video_warm_lead', {
+        event_category: 'engagement',
+        event_label: PROCESS_VIDEO_ID,
+        value: 50,
+      })
+    } else if (detail.action === 'start') {
+      window.gtag('event', 'process_video_start', {
+        event_category: 'engagement',
+        event_label: PROCESS_VIDEO_ID,
+      })
+    } else if (detail.action === 'complete') {
+      window.gtag('event', 'process_video_complete', {
+        event_category: 'engagement',
+        event_label: PROCESS_VIDEO_ID,
+        value: 100,
+      })
+    }
+  }
+}
+
+function ProcessVideoSection() {
+  const startTracked = useRef(false)
+  const warm50Tracked = useRef(false)
+  const completeTracked = useRef(false)
+
+  const onPlay = useCallback(() => {
+    if (startTracked.current) return
+    startTracked.current = true
+    reportProcessVideoEngagement({ action: 'start' })
+  }, [])
+
+  const onTimeUpdate = useCallback((e) => {
+    const v = e.currentTarget
+    if (!v.duration || !isFinite(v.duration) || v.duration === 0) return
+    const progress = v.currentTime / v.duration
+    if (!warm50Tracked.current && progress >= 0.5) {
+      warm50Tracked.current = true
+      reportProcessVideoEngagement({
+        action: '50_percent',
+        warm_lead: true,
+        percent_watched: 50,
+      })
+    }
+  }, [])
+
+  const onEnded = useCallback(() => {
+    if (completeTracked.current) return
+    completeTracked.current = true
+    reportProcessVideoEngagement({ action: 'complete', percent_watched: 100 })
+  }, [])
+
+  return (
+    <section className="process-video-section" aria-labelledby="process-video-heading">
+      <h2 id="process-video-heading" className="section-title process-video-section-title">
+        See where your support begins.
+      </h2>
+      <p className="process-video-intro">
+        Watch the cocoa process from farm to product and see why local processing matters for
+        farmers, families, and the surrounding community.
+      </p>
+
+      <div className="process-video-player-wrap">
+        <video
+          className="process-video"
+          src={cocoaProcessVideo}
+          poster={COCOA_VIDEO_POSTER}
+          controls
+          playsInline
+          preload="metadata"
+          onPlay={onPlay}
+          onTimeUpdate={onTimeUpdate}
+          onEnded={onEnded}
+        >
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <ul className="process-video-trust-grid" role="list">
+        <li className="process-video-trust-card">
+          <h3 className="process-video-trust-title">Grown locally</h3>
+        </li>
+        <li className="process-video-trust-card">
+          <h3 className="process-video-trust-title">Processed with care</h3>
+        </li>
+        <li className="process-video-trust-card">
+          <h3 className="process-video-trust-title">Built for long-term impact</h3>
+        </li>
+      </ul>
+    </section>
+  )
+}
 
 function Home() {
   const [missionQuantity, setMissionQuantity] = useState(1)
@@ -34,7 +142,7 @@ function Home() {
                 className="hero-home-image"
               />
               <p className="hero-home-overlay-card" role="note">
-                20% supports the farm/factory mission
+                100% supports the farm/factory mission
               </p>
             </div>
           </div>
@@ -193,7 +301,16 @@ function Home() {
             <div className="caption-arrow caption-arrow-brown" aria-hidden="true" />
           </article>
         </div>
+
+        <div className="problem-cta">
+          <p className="problem-cta-lead">Help us keep more value in Liberia.</p>
+          <Link to="/fund" className="btn btn-secondary problem-cta-btn">
+            Fund the Factory
+          </Link>
+        </div>
       </section>
+
+      <ProcessVideoSection />
 
       {/* Impact Snapshot Card */}
       <section style={{background: 'linear-gradient(135deg, #8B6F47 0%, #6B4E3D 100%)', color: 'white', padding: '3rem 2rem', margin: '3rem auto', maxWidth: '900px', borderRadius: '8px'}}>
