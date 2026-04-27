@@ -270,6 +270,104 @@ h2 {
   }
 }
 
+/* The Problem – caption cards (Home) */
+.problem-section {
+  padding: 3rem 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.problem-section .section-title {
+  margin-bottom: 2.5rem;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.problem-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.problem-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.problem-caption {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem 0.9rem;
+  text-align: left;
+}
+
+.problem-caption-brown {
+  background: linear-gradient(180deg, #f7f1e8 0%, #ede6dc 100%);
+  border-top: 3px solid var(--primary);
+}
+
+.problem-caption-green {
+  background: linear-gradient(180deg, #e8f0e4 0%, #dee8d8 100%);
+  border-top: 3px solid var(--secondary);
+}
+
+.caption-icon {
+  font-size: 1.1rem;
+  line-height: 1.2;
+  opacity: 0.75;
+  flex-shrink: 0;
+  color: var(--primary);
+}
+
+.problem-caption-green .caption-icon {
+  color: var(--secondary);
+}
+
+.caption-copy h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  color: var(--primary);
+  text-align: left;
+}
+
+.caption-copy p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #3d3d3d;
+}
+
+.caption-arrow {
+  height: 4px;
+  flex-shrink: 0;
+}
+
+.caption-arrow-brown {
+  background: linear-gradient(90deg, var(--primary) 0%, #a88b60 100%);
+  opacity: 0.5;
+}
+
+.caption-arrow-green {
+  background: linear-gradient(90deg, var(--secondary) 0%, #6a8a5a 100%);
+  opacity: 0.5;
+}
+
+@media (max-width: 900px) {
+  .problem-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

@@ -10,27 +10,81 @@ function Home() {
         <Link to="/fund" className="btn btn-secondary">See the Cocoa Butter</Link>
       </section>
 
-      <section>
-        <h2>The Problem</h2>
-        <div className="grid">
-          <div>
-            <div className="grid-photo-wrap">
-              <img src="/images/Liberia_cocoa_farmers_pods.JPEG" alt="Liberia cocoa farmers with pods" />
+      <section className="problem-section">
+        <h2 className="section-title">The Problem</h2>
+
+        <div className="problem-grid">
+          <article className="problem-card">
+            <img
+              src="/images/Liberia_cocoa_farmers_pods.JPEG"
+              alt="Liberian cocoa farmers harvesting cocoa pods"
+              className="problem-image"
+            />
+
+            <div className="problem-caption problem-caption-brown">
+              <div className="caption-icon" aria-hidden="true">
+                <span>◉</span>
+              </div>
+
+              <div className="caption-copy">
+                <h3>Liberia exports raw cocoa</h3>
+                <p>
+                  Most beans leave the country before local processing can create
+                  higher-value products.
+                </p>
+              </div>
             </div>
-            <p>Liberia exports nearly all its cocoa raw.</p>
-          </div>
-          <div>
-            <div className="grid-photo-wrap">
-              <img src="/images/Shipping.PNG" alt="Cocoa shipping and logistics" />
+
+            <div className="caption-arrow caption-arrow-brown" aria-hidden="true" />
+          </article>
+
+          <article className="problem-card">
+            <img
+              src="/images/Shipping.PNG"
+              alt="Cargo ship carrying cocoa value away from Liberia"
+              className="problem-image"
+            />
+
+            <div className="problem-caption problem-caption-green">
+              <div className="caption-icon" aria-hidden="true">
+                <span>◎</span>
+              </div>
+
+              <div className="caption-copy">
+                <h3>Value is lost offshore</h3>
+                <p>
+                  The downstream profits are earned abroad instead of in Liberian
+                  communities.
+                </p>
+              </div>
             </div>
-            <p>Most of the value is captured abroad.</p>
-          </div>
-          <div>
-            <div className="grid-photo-wrap">
-              <img src="/images/processing%20facility.PNG" alt="Cocoa processing facility" />
+
+            <div className="caption-arrow caption-arrow-green" aria-hidden="true" />
+          </article>
+
+          <article className="problem-card">
+            <img
+              src="/images/processing%20facility.PNG"
+              alt="Cocoa processing facility representing local manufacturing"
+              className="problem-image"
+            />
+
+            <div className="problem-caption problem-caption-brown">
+              <div className="caption-icon" aria-hidden="true">
+                <span>▣</span>
+              </div>
+
+              <div className="caption-copy">
+                <h3>Processing changes everything</h3>
+                <p>
+                  Building local processing is the key to retaining value, jobs, and
+                  long-term impact.
+                </p>
+              </div>
             </div>
-            <p>This isn't a farming problem—it's a processing problem.</p>
-          </div>
+
+            <div className="caption-arrow caption-arrow-brown" aria-hidden="true" />
+          </article>
         </div>
       </section>
 
