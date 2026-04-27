@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+const MISSION_PRODUCT_PRICE = 20
+
 function Home() {
+  const [missionQuantity, setMissionQuantity] = useState(1)
+
   return (
     <>
       <section className="hero-home" aria-labelledby="hero-heading">
@@ -34,6 +39,82 @@ function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="home-mission-product" aria-labelledby="mission-product-heading">
+        <h2 id="mission-product-heading" className="section-title home-mission-product-title">
+          Taste the mission.
+        </h2>
+
+        <article className="home-product-card">
+          <div className="home-product-image-wrap">
+            <img
+              src="/images/cocoa_jar.JPEG"
+              alt="Organic Liberian cocoa product"
+              className="home-product-image"
+            />
+          </div>
+
+          <div className="home-product-body">
+            <h3 className="home-product-name">Organic Cocoa Product</h3>
+            <p className="home-product-tagline">Home-grown cocoa from Liberia</p>
+            <p className="home-product-price" aria-label={`${MISSION_PRODUCT_PRICE} dollars per item`}>
+              <span className="home-product-currency">$</span>
+              {MISSION_PRODUCT_PRICE}
+            </p>
+
+            <div className="home-product-field">
+              <span className="home-product-label" id="mission-qty-label">Quantity</span>
+              <div className="home-product-qty" role="group" aria-labelledby="mission-qty-label">
+                <button
+                  type="button"
+                  onClick={() => setMissionQuantity((n) => Math.max(1, n - 1))}
+                  aria-label="Decrease quantity"
+                >
+                  -
+                </button>
+                <span className="home-product-qty-value" aria-live="polite">
+                  {missionQuantity}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setMissionQuantity((n) => n + 1)}
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div className="home-product-cta">
+              <Link
+                to={`/checkout?quantity=${missionQuantity}`}
+                className="btn home-product-add"
+              >
+                Add to Cart
+              </Link>
+            </div>
+
+            <ul className="home-product-trust" aria-label="Order benefits">
+              <li>
+                <span className="home-product-check" aria-hidden="true">✓</span>
+                Organic / naturally grown
+              </li>
+              <li>
+                <span className="home-product-check" aria-hidden="true">✓</span>
+                Supports farm development
+              </li>
+              <li>
+                <span className="home-product-check" aria-hidden="true">✓</span>
+                Small-batch product
+              </li>
+              <li>
+                <span className="home-product-check" aria-hidden="true">✓</span>
+                Secure checkout
+              </li>
+            </ul>
+          </div>
+        </article>
       </section>
 
       <section className="problem-section">

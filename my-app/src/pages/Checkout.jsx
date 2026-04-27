@@ -1,7 +1,12 @@
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 function Checkout() {
-  const [quantity, setQuantity] = useState(1)
+  const [searchParams] = useSearchParams()
+  const [quantity, setQuantity] = useState(() => {
+    const n = parseInt(searchParams.get('quantity') || '1', 10)
+    return Number.isFinite(n) && n > 0 ? n : 1
+  })
   const [donation, setDonation] = useState(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
