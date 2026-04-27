@@ -19,19 +19,107 @@ function Fund() {
       </section>
 
       {/* What Makes This Different */}
-      <section>
-        <h2>What Makes This Different</h2>
-        <ul style={{maxWidth: '800px', margin: '0 auto', fontSize: '1.2rem'}}>
-          <li>Handmade</li>
-          <li>Raw & unrefined</li>
-          <li>Liberian-sourced</li>
-          <li>No fillers</li>
-          <li>Small-batch</li>
-        </ul>
+      <section className="difference-section">
+        <div className="difference-panel">
+          <div className="difference-heading">
+            <h2>What Makes This Different</h2>
+            <div className="difference-divider" aria-hidden="true">
+              <span></span>
+              <Leaf size={22} strokeWidth={2.2} />
+              <span></span>
+            </div>
+          </div>
+
+          <div className="difference-content">
+            <div className="difference-story">
+              <div className="cocoa-illustration" aria-hidden="true">
+                <div className="cocoa-pod">
+                  <div className="cocoa-beans">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <div className="cocoa-leaf cocoa-leaf-one"></div>
+                <div className="cocoa-leaf cocoa-leaf-two"></div>
+              </div>
+
+              <h3>Pure by nature. Powerful by people.</h3>
+
+              <p>
+                Every jar is a reflection of our commitment to authenticity, purity,
+                and the people of Liberia.
+              </p>
+
+              <p className="difference-emphasis">
+                Nothing extra. Nothing hidden. Just real ingredients, real impact.
+              </p>
+            </div>
+
+            <div className="difference-list">
+              <div className="difference-item">
+                <div className="difference-icon difference-icon-brown">
+                  <HeartHandshake size={24} strokeWidth={2.3} />
+                </div>
+
+                <div>
+                  <h4>Handmade</h4>
+                  <p>Made with care, not machines.</p>
+                </div>
+              </div>
+
+              <div className="difference-item">
+                <div className="difference-icon difference-icon-gold">
+                  <Droplet size={24} strokeWidth={2.3} />
+                </div>
+
+                <div>
+                  <h4>Raw & unrefined</h4>
+                  <p>Nutrient-rich and minimally processed.</p>
+                </div>
+              </div>
+
+              <div className="difference-item">
+                <div className="difference-icon difference-icon-green">
+                  <MapPin size={24} strokeWidth={2.3} />
+                </div>
+
+                <div>
+                  <h4>Liberian-sourced</h4>
+                  <p>Sourced directly from Liberian communities.</p>
+                </div>
+              </div>
+
+              <div className="difference-item">
+                <div className="difference-icon difference-icon-brown">
+                  <Leaf size={24} strokeWidth={2.3} />
+                </div>
+
+                <div>
+                  <h4>No fillers</h4>
+                  <p>No additives. No shortcuts.</p>
+                </div>
+              </div>
+
+              <div className="difference-item">
+                <div className="difference-icon difference-icon-green">
+                  <PackageCheck size={24} strokeWidth={2.3} />
+                </div>
+
+                <div>
+                  <h4>Small-batch</h4>
+                  <p>Made in limited batches for maximum quality.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* The Deeper Meaning */}
-      <section style={{background: 'var(--light)'}}>
+      <section className="deeper-meaning-section" style={{background: 'var(--light)'}}>
         <h2>The Deeper Meaning</h2>
         <p style={{textAlign: 'center', fontSize: '1.3rem', maxWidth: '900px', margin: 'auto'}}>
           This jar represents what Liberia can produce when processing happens locally.<br />

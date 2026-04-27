@@ -890,6 +890,319 @@ h2 {
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
+/* =========================
+   What Makes This Different
+========================= */
+
+.difference-section {
+  padding: 5rem 1.5rem 3rem;
+  background: #faf7f1;
+  max-width: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.difference-panel {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  border: 1px solid rgba(139, 69, 19, 0.14);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 12% 25%, rgba(117, 139, 50, 0.08), transparent 28%),
+    linear-gradient(135deg, #fffaf1 0%, #f8efe1 100%);
+  box-shadow: 0 18px 45px rgba(74, 44, 20, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.difference-panel::before {
+  content: "";
+  position: absolute;
+  left: -4rem;
+  top: 5rem;
+  width: 280px;
+  height: 280px;
+  background:
+    linear-gradient(45deg, transparent 48%, rgba(91, 116, 42, 0.08) 49%, rgba(91, 116, 42, 0.08) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(91, 116, 42, 0.06) 49%, rgba(91, 116, 42, 0.06) 51%, transparent 52%);
+  border-radius: 50%;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.difference-heading {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.difference-heading h2 {
+  margin: 0;
+  color: #8b4513;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 1.08;
+  font-weight: 850;
+  letter-spacing: -0.035em;
+}
+
+.difference-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  color: #9a4f16;
+  margin-top: 0.9rem;
+}
+
+.difference-divider span {
+  display: block;
+  width: 58px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.75;
+}
+
+.difference-content {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  margin-top: 2.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.difference-story {
+  text-align: center;
+  padding: 1rem 2rem 1rem 1rem;
+  border-right: 1px solid rgba(139, 69, 19, 0.18);
+}
+
+.cocoa-illustration {
+  width: 230px;
+  height: 165px;
+  margin: 0 auto 1.4rem;
+  position: relative;
+}
+
+.cocoa-pod {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 150px;
+  height: 82px;
+  border: 8px solid #8b4513;
+  border-radius: 70% 35% 70% 35%;
+  background: linear-gradient(135deg, #b66a28, #f4d08a);
+  transform: translate(-50%, -50%) rotate(-18deg);
+  box-shadow: 0 12px 24px rgba(74, 44, 20, 0.16);
+}
+
+.cocoa-pod::before {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border-radius: inherit;
+  background: #f6e6bd;
+  border: 2px solid rgba(139, 69, 19, 0.35);
+}
+
+.cocoa-beans {
+  position: absolute;
+  inset: 20px 24px;
+  z-index: 1;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.cocoa-beans span {
+  width: 14px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff7df;
+  border: 1px solid rgba(139, 69, 19, 0.3);
+}
+
+.cocoa-leaf {
+  position: absolute;
+  width: 76px;
+  height: 42px;
+  background: linear-gradient(135deg, #7a8e3d, #4e6727);
+  border-radius: 100% 0 100% 0;
+  box-shadow: 0 8px 18px rgba(74, 44, 20, 0.12);
+}
+
+.cocoa-leaf-one {
+  right: 8px;
+  top: 46px;
+  transform: rotate(-18deg);
+}
+
+.cocoa-leaf-two {
+  right: 36px;
+  bottom: 24px;
+  transform: rotate(32deg) scale(0.78);
+  opacity: 0.9;
+}
+
+.difference-story h3 {
+  margin: 0 0 1rem;
+  color: #55702a;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  line-height: 1.2;
+  font-weight: 850;
+}
+
+.difference-story p {
+  margin: 0 auto;
+  max-width: 430px;
+  color: #2f2a25;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.difference-story .difference-emphasis {
+  margin-top: 0.8rem;
+  font-weight: 700;
+  color: #5b3a1d;
+}
+
+.difference-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.difference-item {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.9rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 251, 242, 0.72);
+  border: 1px solid rgba(139, 69, 19, 0.08);
+  box-shadow: 0 10px 22px rgba(74, 44, 20, 0.055);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.difference-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(139, 69, 19, 0.16);
+  box-shadow: 0 14px 28px rgba(74, 44, 20, 0.09);
+}
+
+.difference-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.difference-icon-brown {
+  background: linear-gradient(135deg, #9a4f16, #6d3510);
+}
+
+.difference-icon-gold {
+  background: linear-gradient(135deg, #c99031, #9a6518);
+}
+
+.difference-icon-green {
+  background: linear-gradient(135deg, #6f852f, #3f5f1e);
+}
+
+.difference-item h4 {
+  margin: 0 0 0.15rem;
+  color: #3a2b20;
+  font-size: 1.05rem;
+  line-height: 1.15;
+  font-weight: 850;
+}
+
+.difference-item p {
+  margin: 0;
+  color: rgba(47, 42, 37, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .difference-content {
+    grid-template-columns: 1fr;
+  }
+
+  .difference-story {
+    border-right: none;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.18);
+    padding: 0 0 2rem;
+  }
+
+  .difference-list {
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .difference-section {
+    padding: 3.5rem 1rem 2.5rem;
+  }
+
+  .difference-panel {
+    padding: 2rem 1.1rem;
+    border-radius: 18px;
+  }
+
+  .difference-heading h2 {
+    font-size: 2rem;
+  }
+
+  .difference-divider span {
+    width: 36px;
+  }
+
+  .cocoa-illustration {
+    width: 190px;
+    height: 135px;
+  }
+
+  .cocoa-pod {
+    width: 125px;
+    height: 70px;
+  }
+
+  .difference-item {
+    grid-template-columns: 46px 1fr;
+    gap: 0.8rem;
+    border-radius: 18px;
+    padding: 0.85rem;
+  }
+
+  .difference-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .difference-item h4 {
+    font-size: 1rem;
+  }
+
+  .difference-item p {
+    font-size: 0.9rem;
+  }
+}
+
+.deeper-meaning-section {
+  margin-top: 2rem;
+}
+
 footer {
   background: var(--primary);
   color: white;
