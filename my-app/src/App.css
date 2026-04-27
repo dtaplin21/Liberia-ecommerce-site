@@ -270,101 +270,199 @@ h2 {
   }
 }
 
-/* The Problem – caption cards (Home) */
+/* =========================
+   Problem Section
+========================= */
+
 .problem-section {
-  padding: 3rem 1.25rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 4.5rem 1.5rem 3.5rem;
+  background: #faf7f1;
 }
 
-.problem-section .section-title {
+.section-title {
+  text-align: center;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.1;
+  color: #8b4513;
   margin-bottom: 2.5rem;
+  font-weight: 800;
 }
 
 .problem-grid {
+  width: min(1120px, 100%);
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  align-items: stretch;
+  gap: 1.9rem;
 }
 
 .problem-card {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .problem-image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 230px;
   object-fit: cover;
+  border-radius: 10px;
   display: block;
+  box-shadow: 0 10px 24px rgba(67, 39, 18, 0.08);
 }
 
+/* Caption layout */
 .problem-caption {
-  display: flex;
-  gap: 0.75rem;
-  padding: 1rem 1.1rem 0.9rem;
-  text-align: left;
-}
-
-.problem-caption-brown {
-  background: linear-gradient(180deg, #f7f1e8 0%, #ede6dc 100%);
-  border-top: 3px solid var(--primary);
-}
-
-.problem-caption-green {
-  background: linear-gradient(180deg, #e8f0e4 0%, #dee8d8 100%);
-  border-top: 3px solid var(--secondary);
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 1.1rem;
+  align-items: start;
+  margin-top: 1.45rem;
+  padding: 0.25rem 0 0.1rem;
 }
 
 .caption-icon {
-  font-size: 1.1rem;
-  line-height: 1.2;
-  opacity: 0.75;
-  flex-shrink: 0;
-  color: var(--primary);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 1.65rem;
+  font-weight: 800;
+  box-shadow: 0 8px 18px rgba(74, 44, 20, 0.15);
 }
 
-.problem-caption-green .caption-icon {
-  color: var(--secondary);
+.caption-copy {
+  border-left: 2px solid rgba(139, 69, 19, 0.35);
+  padding-left: 1rem;
 }
 
 .caption-copy h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.05rem;
-  color: var(--primary);
-  text-align: left;
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
+  line-height: 1.08;
+  font-weight: 850;
+  letter-spacing: -0.035em;
 }
 
 .caption-copy p {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #3d3d3d;
+  color: #2f2a25;
+  font-size: 1rem;
+  line-height: 1.55;
+  max-width: 32ch;
 }
 
+/* Brown version */
+.problem-caption-brown .caption-icon {
+  background: linear-gradient(135deg, #9a4f16, #6d3510);
+}
+
+.problem-caption-brown .caption-copy h3 {
+  color: #934613;
+}
+
+.problem-caption-brown .caption-copy {
+  border-left-color: rgba(147, 70, 19, 0.45);
+}
+
+/* Green version */
+.problem-caption-green .caption-icon {
+  background: linear-gradient(135deg, #6f852f, #3f5f1e);
+}
+
+.problem-caption-green .caption-copy h3 {
+  color: #5b742a;
+}
+
+.problem-caption-green .caption-copy {
+  border-left-color: rgba(91, 116, 42, 0.5);
+}
+
+/* Editorial arrow line */
 .caption-arrow {
-  height: 4px;
-  flex-shrink: 0;
+  position: relative;
+  height: 1px;
+  margin-top: 1.45rem;
+  opacity: 0.95;
+}
+
+.caption-arrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 9px;
+  top: 0;
+  height: 1px;
+  background: currentColor;
+}
+
+.caption-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -4px;
+  width: 9px;
+  height: 9px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
 }
 
 .caption-arrow-brown {
-  background: linear-gradient(90deg, var(--primary) 0%, #a88b60 100%);
-  opacity: 0.5;
+  color: #934613;
 }
 
 .caption-arrow-green {
-  background: linear-gradient(90deg, var(--secondary) 0%, #6a8a5a 100%);
-  opacity: 0.5;
+  color: #5b742a;
 }
 
-@media (max-width: 900px) {
+/* Responsive */
+@media (max-width: 950px) {
   .problem-grid {
     grid-template-columns: 1fr;
+    max-width: 620px;
+  }
+
+  .problem-image {
+    height: 300px;
+  }
+
+  .caption-copy p {
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .problem-section {
+    padding: 3.25rem 1rem 2.75rem;
+  }
+
+  .problem-image {
+    height: 220px;
+  }
+
+  .problem-caption {
+    grid-template-columns: 48px 1fr;
+    gap: 0.85rem;
+  }
+
+  .caption-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
+
+  .caption-copy {
+    padding-left: 0.8rem;
+  }
+
+  .caption-copy h3 {
+    font-size: 1.25rem;
+  }
+
+  .caption-copy p {
+    font-size: 0.95rem;
   }
 }
 
