@@ -135,22 +135,24 @@ nav a.active {
 .impact-item h3 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
-  color: white;
+  color: var(--primary);
 }
 
 .impact-item p {
   font-size: 0.95rem;
-  opacity: 0.9;
   line-height: 1.5;
   margin: 0;
+  color: var(--gray);
 }
 
 /* Homepage hero — copy left, people-first imagery + mission card right */
 section.hero-home {
+  padding: 2.75rem 1.5rem 3.5rem;
+}
+
+section.hero-home .hero-home-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2.75rem 1.5rem 3.5rem;
-  background: #fdfaf5;
 }
 
 .hero-home-inner {
@@ -255,12 +257,14 @@ section.hero-home .hero-home-ctas .btn {
 
 /* Homepage: early product block (mission + add to cart) */
 section.home-mission-product {
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 2.25rem 1.5rem 2.75rem;
-  background: #fffdf8;
   border-top: 1px solid rgba(139, 69, 19, 0.08);
   border-bottom: 1px solid rgba(139, 69, 19, 0.06);
+}
+
+section.home-mission-product .home-mission-product-inner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .home-mission-product .home-mission-product-title {
@@ -518,6 +522,95 @@ section {
   margin: 0 auto;
 }
 
+/* =========================
+   Section bands (full-width alternating backgrounds)
+========================= */
+
+section.section-band {
+  max-width: none;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  box-sizing: border-box;
+}
+
+section.section-band--brown {
+  background: var(--section-brown);
+}
+
+section.section-band--green {
+  background: var(--section-green);
+}
+
+section.section-band--yellow {
+  background: var(--section-yellow);
+}
+
+.section-band-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.section-band-inner--narrow {
+  max-width: 900px;
+}
+
+.home-section-lead {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: var(--gray);
+}
+
+.home-proof-section .home-section-lead--large {
+  font-size: 1.3rem;
+}
+
+.home-proof-figure {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.home-proof-cta {
+  text-align: center;
+}
+
+.home-impact-section {
+  padding: 4rem 1.5rem;
+}
+
+.home-impact-section .home-impact-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.home-impact-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.home-impact-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.home-impact-cta .btn {
+  margin-top: 0;
+}
+
+.home-trust-section {
+  text-align: center;
+}
+
+.home-trust-section .home-section-lead {
+  margin-bottom: 0;
+}
+
 h2 {
   color: var(--primary);
   text-align: center;
@@ -542,14 +635,13 @@ h2 {
 
 .problem-section {
   padding: 4.5rem 1.5rem 3.5rem;
-  background: #faf7f1;
 }
 
 .section-title {
   text-align: center;
   font-size: clamp(2.2rem, 4vw, 3.4rem);
   line-height: 1.1;
-  color: #8b4513;
+  color: var(--primary);
   margin-bottom: 2.5rem;
   font-weight: 800;
 }
@@ -709,11 +801,13 @@ h2 {
 
 /* Process video (Home) — after problem */
 .process-video-section {
+  padding: 3.5rem 1.5rem 3.25rem;
+  border-top: 1px solid rgba(139, 69, 19, 0.08);
+}
+
+.process-video-section .process-video-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3.5rem 1.5rem 3.25rem;
-  background: #fdfaf5;
-  border-top: 1px solid rgba(139, 69, 19, 0.08);
 }
 
 .process-video-section .process-video-section-title {
@@ -879,7 +973,6 @@ h2 {
 }
 
 .product-hero {
-  background: var(--light);
   text-align: center;
   padding: 100px 20px;
 }
@@ -896,7 +989,6 @@ h2 {
 
 .difference-section {
   padding: 5rem 1.5rem 3rem;
-  background: #faf7f1;
   max-width: none;
   width: 100%;
   box-sizing: border-box;
@@ -1252,6 +1344,16 @@ footer .footer-muted {
 /* FAQ page — scoped under .faq only */
 .faq {
   padding: 4rem 1.5rem;
+}
+
+.page-story {
+  padding: 60px 20px;
+}
+
+.page-story > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .faq-container {

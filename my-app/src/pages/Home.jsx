@@ -71,7 +71,11 @@ function ProcessVideoSection() {
   }, [])
 
   return (
-    <section className="process-video-section" aria-labelledby="process-video-heading">
+    <section
+      className="process-video-section section-band section-band--brown"
+      aria-labelledby="process-video-heading"
+    >
+      <div className="process-video-inner">
       <h2 id="process-video-heading" className="section-title process-video-section-title">
         See where your support begins.
       </h2>
@@ -107,6 +111,7 @@ function ProcessVideoSection() {
           <h3 className="process-video-trust-title">Built for long-term impact</h3>
         </li>
       </ul>
+      </div>
     </section>
   )
 }
@@ -116,7 +121,7 @@ function Home() {
 
   return (
     <>
-      <section className="hero-home" aria-labelledby="hero-heading">
+      <section className="hero-home section-band section-band--brown" aria-labelledby="hero-heading">
         <div className="hero-home-inner">
           <div className="hero-home-copy">
             <h1 id="hero-heading">
@@ -149,7 +154,11 @@ function Home() {
         </div>
       </section>
 
-      <section className="home-mission-product" aria-labelledby="mission-product-heading">
+      <section
+        className="home-mission-product section-band section-band--green"
+        aria-labelledby="mission-product-heading"
+      >
+        <div className="home-mission-product-inner">
         <h2 id="mission-product-heading" className="section-title home-mission-product-title">
           Taste the mission.
         </h2>
@@ -223,9 +232,10 @@ function Home() {
             </ul>
           </div>
         </article>
+        </div>
       </section>
 
-      <section className="problem-section">
+      <section className="problem-section section-band section-band--yellow">
         <h2 className="section-title">The Problem</h2>
 
         <div className="problem-grid">
@@ -312,10 +322,9 @@ function Home() {
 
       <ProcessVideoSection />
 
-      {/* Impact Snapshot Card */}
-      <section style={{background: 'linear-gradient(135deg, #8B6F47 0%, #6B4E3D 100%)', color: 'white', padding: '3rem 2rem', margin: '3rem auto', maxWidth: '900px', borderRadius: '8px'}}>
-        <div style={{maxWidth: '800px', margin: '0 auto'}}>
-          <h2 style={{color: 'white', textAlign: 'center', marginBottom: '2rem'}}>Impact Snapshot</h2>
+      <section className="section-band section-band--green home-impact-section" aria-labelledby="impact-heading">
+        <div className="home-impact-inner">
+          <h2 id="impact-heading">Impact Snapshot</h2>
           <div className="impact-grid">
             <div className="impact-item">
               <h3>Jobs Created</h3>
@@ -334,15 +343,16 @@ function Home() {
               <p>Shared prosperity model</p>
             </div>
           </div>
-          <div style={{textAlign: 'center', marginTop: '2rem'}}>
-            <Link to="/progress" className="btn" style={{marginTop: '2rem'}}>View Progress</Link>
+          <div className="home-impact-cta">
+            <Link to="/progress" className="btn">View Progress</Link>
           </div>
         </div>
       </section>
 
-      <section style={{background: '#f8f4ed'}}>
+      <section className="section-band section-band--yellow home-solution-section">
+        <div className="section-band-inner">
         <h2>The Solution</h2>
-        <p style={{textAlign: 'center', maxWidth: '900px', margin: '0 auto 3rem', fontSize: '1.2rem'}}>
+        <p className="home-section-lead">
           We are building local processing so value, jobs, and income stay in Liberia.
         </p>
         <div className="grid">
@@ -365,26 +375,31 @@ function Home() {
             <h3>Finished Product & Opportunity</h3>
           </div>
         </div>
+        </div>
       </section>
 
-      <section>
+      <section className="section-band section-band--brown home-proof-section">
+        <div className="section-band-inner">
         <h2>Proof of Concept: Cocoa Butter</h2>
-        <p style={{textAlign: 'center', fontSize: '1.3rem'}}>
+        <p className="home-section-lead home-section-lead--large">
           This cocoa butter is handmade today. Tomorrow, it will be produced at scale in Liberia.
         </p>
-        <div style={{textAlign: 'center', margin: '3rem 0'}}>
+        <div className="home-proof-figure">
           <img src="/images/main_cocoa_butter.PNG" alt="Divine Lumina Raw & Unrefined Cocoa Butter" className="product-img" />
         </div>
-        <div style={{textAlign: 'center'}}>
+        <div className="home-proof-cta">
           <Link to="/fund" className="btn">Get a Jar & Support the Build</Link>
+        </div>
         </div>
       </section>
 
-      <section>
+      <section className="section-band section-band--green home-trust-section">
+        <div className="section-band-inner">
         <h2>Trust & Legitimacy</h2>
-        <p style={{textAlign: 'center', fontSize: '1.2rem'}}>
+        <p className="home-section-lead">
           700-acre farm in Nimba County • Community partnership • Traceable & ethical sourcing
         </p>
+        </div>
       </section>
 
       <footer>

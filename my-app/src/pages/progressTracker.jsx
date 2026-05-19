@@ -34,7 +34,7 @@ function ProgressTracker() {
 
   if (loading) {
     return (
-      <section style={{padding: '60px 20px', textAlign: 'center'}}>
+      <section className="section-band section-band--brown" style={{ textAlign: 'center' }}>
         <h2>Progress Tracker</h2>
         <p>Loading statistics...</p>
       </section>
@@ -43,7 +43,7 @@ function ProgressTracker() {
 
   if (error) {
     return (
-      <section style={{padding: '60px 20px', textAlign: 'center'}}>
+      <section className="section-band section-band--brown" style={{ textAlign: 'center' }}>
         <h2>Progress Tracker</h2>
         <p style={{color: '#c33'}}>Error: {error}</p>
         <button onClick={fetchStats} className="btn" style={{marginTop: '1rem'}}>
@@ -54,7 +54,7 @@ function ProgressTracker() {
   }
 
   return (
-    <section style={{padding: '60px 20px', maxWidth: '1200px', margin: '0 auto'}}>
+    <section className="section-band section-band--brown">
       <h2>Progress Tracker</h2>
       
       <div className="grid" style={{marginTop: '3rem', gap: '2rem'}}>

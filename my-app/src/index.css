@@ -5,13 +5,18 @@
   --light: #FFFACD;        /* Light highlight */
   --dark: #3C2F2F;
   --gray: #5C4033;
+
+  /* Section bands — brown / green / yellow alternation */
+  --section-brown: #f0e4d8;
+  --section-green: #e5ebd8;
+  --section-yellow: #fffacd;
 }
 
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--dark);
-  background: #fdfaf5;
+  background: var(--section-brown);
   line-height: 1.6;
 }
 

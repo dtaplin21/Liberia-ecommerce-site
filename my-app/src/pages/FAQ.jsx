@@ -53,7 +53,7 @@ const faqItems = [
 
 export default function FAQ() {
   return (
-    <section className="faq">
+    <section className="faq section-band section-band--brown">
       <div className="faq-container">
         <h1>Frequently Asked Questions</h1>
         <p className="faq-intro">

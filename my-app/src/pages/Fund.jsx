@@ -11,7 +11,7 @@ function Fund() {
   return (
     <>
       {/* Product Hero Section */}
-      <section className="product-hero">
+      <section className="product-hero section-band section-band--brown">
         <h2>Divine Lumina – Raw & Unrefined Cocoa Butter</h2>
         <img src="/images/main_cocoa_butter.PNG" alt="8 oz jar of Divine Lumina Cocoa Butter" className="product-img" />
         <p style={{fontSize: '1.4rem', margin: '2rem 0'}}>8 oz • Every jar directly supports processing infrastructure in Liberia.</p>
@@ -19,7 +19,7 @@ function Fund() {
       </section>
 
       {/* What Makes This Different */}
-      <section className="difference-section">
+      <section className="difference-section section-band section-band--green">
         <div className="difference-panel">
           <div className="difference-heading">
             <h2>What Makes This Different</h2>
@@ -119,7 +119,7 @@ function Fund() {
       </section>
 
       {/* The Deeper Meaning */}
-      <section className="deeper-meaning-section" style={{background: 'var(--light)'}}>
+      <section className="deeper-meaning-section section-band section-band--yellow">
         <h2>The Deeper Meaning</h2>
         <p style={{textAlign: 'center', fontSize: '1.3rem', maxWidth: '900px', margin: 'auto'}}>
           This jar represents what Liberia can produce when processing happens locally.<br />
@@ -128,7 +128,7 @@ function Fund() {
       </section>
 
       {/* Fund the Factory Section */}
-      <section style={{background: '#f0e8df'}}>
+      <section className="section-band section-band--brown">
         <h2>Fund the Factory</h2>
         <h3>What We're Building</h3>
         <p>A scalable cocoa processing facility producing:</p>
@@ -156,7 +156,7 @@ function Fund() {
       </section>
 
       {/* How Funds Are Used */}
-      <section>
+      <section className="section-band section-band--green">
         <h2>How Funds Are Used</h2>
         <p style={{textAlign: 'center', fontSize: '1.3rem'}}>
           Proceeds go toward building cocoa processing capacity in Liberia.

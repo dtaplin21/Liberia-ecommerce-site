@@ -1,6 +1,6 @@
 function Story() {
   return (
-    <section style={{padding: '60px 20px', maxWidth: '1200px', margin: '0 auto'}}>
+    <section className="section-band section-band--brown page-story">
       <h2>Our Story</h2>
       
       <div style={{lineHeight: '1.8', fontSize: '1.1rem', color: '#333'}}>
