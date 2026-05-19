@@ -13,7 +13,7 @@ function Fund() {
       {/* Product Hero Section */}
       <section className="product-hero">
         <h2>Divine Lumina – Raw & Unrefined Cocoa Butter</h2>
-        <img src="/images/cocoa_jar.JPEG" alt="8 oz jar of Divine Lumina Cocoa Butter" className="product-img" />
+        <img src="/images/main_cocoa_butter.PNG" alt="8 oz jar of Divine Lumina Cocoa Butter" className="product-img" />
         <p style={{fontSize: '1.4rem', margin: '2rem 0'}}>8 oz • Every jar directly supports processing infrastructure in Liberia.</p>
         <Link to="/checkout" className="btn" style={{fontSize: '1.5rem', padding: '1.2rem 3rem'}}>Purchase & Support the Build</Link>
       </section>

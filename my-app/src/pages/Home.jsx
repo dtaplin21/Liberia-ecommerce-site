@@ -157,7 +157,7 @@ function Home() {
         <article className="home-product-card">
           <div className="home-product-image-wrap">
             <img
-              src="/images/cocoa_jar.JPEG"
+              src="/images/main_cocoa_butter.PNG"
               alt="Organic Liberian cocoa product"
               className="home-product-image"
             />
@@ -354,7 +354,7 @@ function Home() {
           </div>
           <div className="card">
             <div className="grid-photo-wrap">
-              <img src="/images/cocoa_jar.JPEG" alt="Divine Lumina Cocoa Butter Jar" />
+              <img src="/images/main_cocoa_butter.PNG" alt="Divine Lumina Cocoa Butter Jar" />
             </div>
             <h3>→ Cocoa Butter</h3>
           </div>
@@ -373,7 +373,7 @@ function Home() {
           This cocoa butter is handmade today. Tomorrow, it will be produced at scale in Liberia.
         </p>
         <div style={{textAlign: 'center', margin: '3rem 0'}}>
-          <img src="/images/cocoa_jar.JPEG" alt="Divine Lumina Raw & Unrefined Cocoa Butter" className="product-img" />
+          <img src="/images/main_cocoa_butter.PNG" alt="Divine Lumina Raw & Unrefined Cocoa Butter" className="product-img" />
         </div>
         <div style={{textAlign: 'center'}}>
           <Link to="/fund" className="btn">Get a Jar & Support the Build</Link>

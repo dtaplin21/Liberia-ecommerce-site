@@ -110,7 +110,7 @@ function Checkout() {
             {/* Product Image */}
             <div style={{marginBottom: '1.5rem', textAlign: 'center'}}>
               <img 
-                src="/images/cocoa_jar.JPEG" 
+                src="/images/main_cocoa_butter.PNG" 
                 alt="Divine Lumina Cocoa Butter" 
                 style={{
                   width: '100%',
