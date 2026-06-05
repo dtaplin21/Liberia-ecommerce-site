@@ -126,7 +126,7 @@ function Home() {
         <div className="hero-home-inner">
           <div className="hero-home-copy">
             <h1 id="hero-heading">
-              From Liberian cocoa farms to real economic opportunity.
+              From our Liberian cocoa farm to real economic opportunity.
             </h1>
             <p className="hero-home-lead">
               Organic, home-grown cocoa products that help fund local processing, farmer income,
@@ -143,9 +143,9 @@ function Home() {
           <div className="hero-home-media">
             <div className="hero-home-image-wrap">
               <img
-                src="/images/Liberia_cocoa_farmers_pods.JPEG"
-                alt="Liberian farmers with cocoa pods at harvest"
-                className="hero-home-image"
+                src="/images/man_sitting_on_pods.PNG"
+                alt="Liberian farmer with harvested cocoa pods"
+                className="hero-home-image hero-home-image--portrait"
               />
               <p className="hero-home-overlay-card" role="note">
                 100% supports the farm/factory mission
@@ -161,7 +161,7 @@ function Home() {
       >
         <div className="home-mission-product-inner">
         <h2 id="mission-product-heading" className="section-title home-mission-product-title">
-          Taste the mission.
+          Experience the mission.
         </h2>
 
         <article className="home-product-card">
@@ -242,11 +242,13 @@ function Home() {
 
         <div className="problem-grid">
           <article className="problem-card">
-            <img
-              src="/images/Liberia_cocoa_farmers_pods.JPEG"
-              alt="Liberian cocoa farmers harvesting cocoa pods"
-              className="problem-image"
-            />
+            <div className="problem-image-wrap">
+              <img
+                src="/images/Liberia_cocoa_farmers_pods.JPEG"
+                alt="Liberian cocoa farmers harvesting cocoa pods"
+                className="problem-image"
+              />
+            </div>
 
             <div className="problem-caption problem-caption-brown">
               <div className="caption-icon" aria-hidden="true">
@@ -266,11 +268,13 @@ function Home() {
           </article>
 
           <article className="problem-card">
-            <img
-              src="/images/Shipping.PNG"
-              alt="Cargo ship carrying cocoa value away from Liberia"
-              className="problem-image"
-            />
+            <div className="problem-image-wrap">
+              <img
+                src="/images/Shipping.PNG"
+                alt="Cargo ship carrying cocoa value away from Liberia"
+                className="problem-image"
+              />
+            </div>
 
             <div className="problem-caption problem-caption-green">
               <div className="caption-icon" aria-hidden="true">
@@ -290,11 +294,13 @@ function Home() {
           </article>
 
           <article className="problem-card">
-            <img
-              src="/images/processing%20facility.PNG"
-              alt="Cocoa processing facility representing local manufacturing"
-              className="problem-image"
-            />
+            <div className="problem-image-wrap">
+              <img
+                src="/images/processing%20facility.PNG"
+                alt="Cocoa processing facility representing local manufacturing"
+                className="problem-image"
+              />
+            </div>
 
             <div className="problem-caption problem-caption-brown">
               <div className="caption-icon" aria-hidden="true">
