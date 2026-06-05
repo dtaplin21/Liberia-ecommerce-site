@@ -1,4 +1,7 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import PreorderButton from '../components/PreorderButton'
+import { trackFundPageView } from '../lib/metaPixel'
 import {
   HeartHandshake,
   Droplet,
@@ -8,14 +11,34 @@ import {
 } from 'lucide-react'
 
 function Fund() {
+  useEffect(() => {
+    trackFundPageView()
+  }, [])
+
   return (
     <>
+      <section className="fund-preorder-bar section-band section-band--green" aria-label="Preorder">
+        <div className="fund-preorder-bar-inner">
+          <p className="fund-preorder-bar-text">
+            Reserve raw Liberian cocoa butter — every jar funds local processing.
+          </p>
+          <PreorderButton
+            source="fund_top_bar"
+            className="btn fund-preorder-bar-btn"
+          />
+        </div>
+      </section>
+
       {/* Product Hero Section */}
       <section className="product-hero section-band section-band--brown">
         <h2>Divine Lumina – Raw & Unrefined Cocoa Butter</h2>
         <img src="/images/main_cocoa_butter.PNG" alt="8 oz jar of Divine Lumina Cocoa Butter" className="product-img" />
         <p style={{fontSize: '1.4rem', margin: '2rem 0'}}>8 oz • Every jar directly supports processing infrastructure in Liberia.</p>
-        <Link to="/checkout" className="btn" style={{fontSize: '1.5rem', padding: '1.2rem 3rem'}}>Purchase & Support the Build</Link>
+        <PreorderButton
+          source="fund_hero"
+          className="btn"
+          style={{ fontSize: '1.5rem', padding: '1.2rem 3rem' }}
+        />
       </section>
 
       {/* What Makes This Different */}

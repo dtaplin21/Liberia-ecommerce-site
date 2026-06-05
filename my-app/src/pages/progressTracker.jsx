@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { apiUrl } from '../lib/api'
 
 function ProgressTracker() {
   const [stats, setStats] = useState({
@@ -15,7 +16,7 @@ function ProgressTracker() {
   const fetchStats = async () => {
     try {
       setLoading(true)
-      const response = await fetch('http://localhost:8000/stats')
+      const response = await fetch(apiUrl('/stats'))
       
       if (!response.ok) {
         throw new Error('Failed to fetch statistics')

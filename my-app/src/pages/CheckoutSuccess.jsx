@@ -1,8 +1,22 @@
+import { useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
+import { trackPurchase } from '../lib/metaPixel'
 
 function CheckoutSuccess() {
   const [searchParams] = useSearchParams()
   const sessionId = searchParams.get('session_id')
+  const value = parseFloat(searchParams.get('value') || '')
+  const quantity = parseInt(searchParams.get('quantity') || '1', 10)
+
+  useEffect(() => {
+    trackPurchase({
+      value: Number.isFinite(value) ? value : undefined,
+      quantity: Number.isFinite(quantity) && quantity > 0 ? quantity : 1,
+      currency: 'USD',
+    })
+    // Fire once when customer lands after Stripe redirect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <section style={{padding: '60px 20px', textAlign: 'center'}}>

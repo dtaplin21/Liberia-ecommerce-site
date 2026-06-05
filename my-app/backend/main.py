@@ -170,7 +170,11 @@ async def create_checkout_session(request: CheckoutSessionRequest):
             mode='payment',
             customer_email=request.customer_email,
             metadata=metadata,
-            success_url=request.success_url + '?session_id={CHECKOUT_SESSION_ID}',
+            success_url=(
+                request.success_url
+                + ('&' if '?' in request.success_url else '?')
+                + 'session_id={CHECKOUT_SESSION_ID}'
+            ),
             cancel_url=request.cancel_url,
         )
         return {

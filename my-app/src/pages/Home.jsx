@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
+import { trackPreorderClick } from '../lib/metaPixel'
 import cocoaProcessVideo from '../assets/cocoa_process_video.MP4'
 
 const MISSION_PRODUCT_PRICE = 20
@@ -207,6 +208,7 @@ function Home() {
               <Link
                 to={`/checkout?quantity=${missionQuantity}`}
                 className="btn home-product-add"
+                onClick={() => trackPreorderClick('home_mission_product')}
               >
                 Add to Cart
               </Link>

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
+import MetaPixel from './components/MetaPixel'
 import Home from './pages/Home'
 import Fund from './pages/Fund'
 import Checkout from './pages/Checkout'
@@ -13,6 +14,7 @@ import './App.css'
 function App() {
   return (
     <Router>
+      <MetaPixel />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

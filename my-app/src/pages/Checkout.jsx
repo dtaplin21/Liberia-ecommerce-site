@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { apiUrl } from '../lib/api'
+import { trackMetaEvent } from '../lib/metaPixel'
 
 function Checkout() {
   const [searchParams] = useSearchParams()
@@ -30,6 +32,13 @@ function Checkout() {
     zip: ''
   })
 
+  useEffect(() => {
+    trackMetaEvent('ViewContent', {
+      content_name: 'Checkout',
+      content_category: 'Cocoa Butter',
+    })
+  }, [])
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -47,7 +56,14 @@ function Checkout() {
       const amountInCents = Math.round(total * 100)
 
       // Call backend to create checkout session
-      const response = await fetch('http://localhost:8000/create-checkout-session', {
+      trackMetaEvent('InitiateCheckout', {
+        content_name: 'Divine Lumina Cocoa Butter',
+        currency: 'USD',
+        value: total,
+        num_items: quantity,
+      })
+
+      const response = await fetch(apiUrl('/create-checkout-session'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +79,7 @@ function Checkout() {
           customer_city: formData.city,
           customer_state: formData.state,
           customer_zip: formData.zip,
-          success_url: `${window.location.origin}/checkout/success`,
+          success_url: `${window.location.origin}/checkout/success?value=${total.toFixed(2)}&quantity=${quantity}`,
           cancel_url: `${window.location.origin}/checkout`
         })
       })
